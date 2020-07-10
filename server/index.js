@@ -44,7 +44,7 @@ io.on('connection', socket => {
         console.log("Room joined", group);
 
         let room = await db.groups.get_active_group({id: group});
-        let messages = await db.message.message_history({id: group});
+        let messages = await db.message.message_history({group});
         socket.join(room);
         io.to(room).emit('room joined', messages);
     });
@@ -52,7 +52,6 @@ io.on('connection', socket => {
         const { group, sender, message } = data,
               db = app.get("db");
 
-        console.log(data)
         await db.message.create_message({ group, sender, message });
         let messages = await db.message.message_history({ group });
         socket.emit("message dispatched", messages);

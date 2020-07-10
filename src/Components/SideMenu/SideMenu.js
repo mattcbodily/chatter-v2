@@ -13,16 +13,10 @@ class SideMenu extends Component {
     }
 
     componentDidMount(){
-        const {chatGroups} = this.state,
-              {user, history} = this.props;
+        const {user} = this.props;
         axios.get(`/api/groups/${user.user_id}`)
         .then(res => {
             this.setState({chatGroups: res.data});
-            if(chatGroups.length){
-                history.push(`/chat/${res.data[0].group_id}`)
-            } else {
-                history.push('/chat/0')
-            }
         })
         .catch(err => console.log(err))
     }

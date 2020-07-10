@@ -36,7 +36,7 @@ class Landing extends Component {
         axios.post('/api/login', {email, password})
         .then(res => {
             loginUser(res.data);
-            history.push('/chat');
+            history.push('/chat/5');
         })
         .catch(err => console.log(err));
     }
@@ -48,7 +48,7 @@ class Landing extends Component {
             axios.post('/api/register', {firstName, lastName, email, password})
             .then(res => {
                 loginUser(res.data);
-                history.push('/chat');
+                history.push('/chat/5');
             })
             .catch(err => console.log(err));
         }
@@ -73,13 +73,13 @@ class Landing extends Component {
                 ? (
                     <>
                         <input type='password' value={verPassword} name='verPassword' onChange={e => this.handleInput(e)}/>
-                        <button>Register</button>
+                        <button onClick={this.handleRegister}>Register</button>
                         <p>Already have an account? <span onClick={this.handleToggle}>Sign in here</span></p>
                     </>
                 )
                 : (
                     <>
-                        <button>Log in</button>
+                        <button onClick={this.handleLogin}>Log in</button>
                         <p>Don't have an account? <span onClick={this.handleToggle}>Register here</span></p>
                     </>
                 )}
