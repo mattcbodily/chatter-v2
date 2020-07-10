@@ -1,14 +1,51 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 import './SideMenu.css';
 
 class SideMenu extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            chatGroups: []
+        }
+    }
+
+    componentDidMount(){
+        const {chatGroups} = this.state,
+              {user, history} = this.props;
+        axios.get(`/api/groups/${user.user_id}`)
+        .then(res => {
+            this.setState({chatGroups: res.data});
+            if(chatGroups.length){
+                history.push(`/chat/${res.data[0].group_id}`)
+            } else {
+                history.push('/chat/0')
+            }
+        })
+        .catch(err => console.log(err))
+    }
+
     render(){
+        const {chatGroups} = this.state;
         return (
             <div className='side-menu'>
-                SideMenu
+                {chatGroups.length
+                ? chatGroups.map(group => (
+                    <Link key={group.group_id} to={`/chat/${group.group_id}`}><p>{group.group_name}</p></Link>
+                ))
+                : (
+                    <>
+                        <p>You don't have any groups!</p>
+                        <button>Create a Group</button>
+                    </>
+                )}
             </div>
         )
     }
 }
 
-export default SideMenu;
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps)(SideMenu);

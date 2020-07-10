@@ -6,6 +6,6 @@ import Chat from './Components/Chat/Chat';
 export default (
     <Switch>
         <Route exact path='/' component={Landing} />
-        <Route path='/chat' component={Chat} />
+        <Route path='/chat/:id' component={Chat} />
     </Switch>
 )
