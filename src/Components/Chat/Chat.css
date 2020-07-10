@@ -1,0 +1,26 @@
+.chat {
+    height: calc(100vh - 75px);
+    width: calc(100% - 300px);
+    position: fixed;
+    top: 75px;
+    left: 300px;
+}
+
+.send-message {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+}
+
+.send-message input {
+    height: 35px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.send-message button {
+    height: 35px;
+    width: 10%;
+    box-sizing: border-box;
+}

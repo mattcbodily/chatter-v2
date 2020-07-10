@@ -1,0 +1,9 @@
+.side-menu {
+    height: calc(100vh - 75px);
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+    position: fixed;
+    top: 75px;
+    left: 0;
+}
