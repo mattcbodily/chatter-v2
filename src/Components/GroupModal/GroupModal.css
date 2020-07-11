@@ -1,7 +1,6 @@
 .group-modal {
     height: 150px;
-    width: 350px;
+    width: 300px;
     box-sizing: border-box;
     border-radius: 10px;
-    background: white;
 }

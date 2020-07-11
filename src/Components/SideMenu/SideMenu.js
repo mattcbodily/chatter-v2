@@ -18,7 +18,7 @@ class SideMenu extends Component {
 
     render(){
         const {modalView} = this.state,
-              {chatGroups} = this.props;
+              {chatGroups, getGroupFn} = this.props;
 
         return (
             <div className='side-menu'>
@@ -33,7 +33,7 @@ class SideMenu extends Component {
                 )}
                 <button onClick={this.handleToggle}>Create a Group</button>
                 {modalView
-                ? <GroupModal getGroupFn={this.getGroups} modalFn={this.handleToggle}/>
+                ? <GroupModal getGroupFn={getGroupFn} modalFn={this.handleToggle}/>
                 : null}
             </div>
         )

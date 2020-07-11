@@ -29,7 +29,7 @@ class Header extends Component {
     render(){
         return (
             <div className='main-header'>
-                <SideMenu chatGroups={this.state.chatGroups}/>
+                <SideMenu chatGroups={this.state.chatGroups} getGroupFn={this.getGroups}/>
             </div>
         )
     }
