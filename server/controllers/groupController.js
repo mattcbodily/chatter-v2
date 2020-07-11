@@ -8,10 +8,10 @@ module.exports = {
         .catch(err => res.status(500).send(err))
     },
     createGroup: async(req, res) => {
-        const {groupName, directMessage, user_id} = req.body,
+        const {groupName, user_id} = req.body,
               db = req.app.get('db');
 
-        let groupId = await db.group.create_group({groupName, directMessage});
+        let groupId = await db.group.create_group({groupName});
 
         db.group.user_group_join({user_id, group_id: groupId[0].group_id});
 

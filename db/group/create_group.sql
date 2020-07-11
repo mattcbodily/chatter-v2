@@ -3,6 +3,6 @@ insert into chat_group (
     direct_message
 ) values (
     ${groupName},
-    ${directMessage}
+    false
 )
 returning group_id;

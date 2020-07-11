@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import GroupModal from '../GroupModal/GroupModal';
 import './SideMenu.css';
 
 class SideMenu extends Component {
     constructor(props){
         super(props);
         this.state = {
-            chatGroups: []
+            chatGroups: [],
+            modalView: false
         }
     }
 
