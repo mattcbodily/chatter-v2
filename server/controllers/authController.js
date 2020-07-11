@@ -14,8 +14,6 @@ module.exports = {
             hash = bcrypt.hashSync(password, salt),
             newUser = await db.auth.register_user({firstName, lastName, email, hash});
 
-        db.group.user_general_join({user_id: newUser[0].user_id});
-
         req.session.user = newUser[0];
         res.status(201).send(req.session.user);
     },

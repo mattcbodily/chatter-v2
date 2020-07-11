@@ -36,7 +36,7 @@ class Landing extends Component {
         axios.post('/api/login', {email, password})
         .then(res => {
             loginUser(res.data);
-            history.push('/chat/5');
+            history.push('/chat/0');
         })
         .catch(err => console.log(err));
     }

@@ -65,10 +65,22 @@ class Chat extends Component {
     }
 
     render(){
-        const {messageInput, messages} = this.state;
+        const {messageInput, messages} = this.state,
+              {id} = this.props.match.params;
         console.log(messages)
         return (
             <div className='chat'>
+                {id === 0
+                ? (
+                    <>
+                        <p>Select or create a group to start chatting!</p>
+                    </>
+                )
+                : messages.map(message => (
+                    <section key={message.message_id}>
+                        <p>{message.message}</p>
+                    </section>
+                ))}
                 <section className='send-message'>
                     <input value={messageInput} onChange={e => this.handleInput(e.target.value)}/>
                     <button onClick={this.sendMessage}>Send</button>

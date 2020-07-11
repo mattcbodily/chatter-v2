@@ -43,7 +43,7 @@ io.on('connection', socket => {
         
         console.log("Room joined", group);
 
-        let room = await db.groups.get_active_group({id: group});
+        let room = await db.group.get_active_group({group});
         let messages = await db.message.message_history({group});
         socket.join(room);
         io.to(room).emit('room joined', messages);

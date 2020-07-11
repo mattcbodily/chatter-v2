@@ -32,9 +32,9 @@ class SideMenu extends Component {
                 : (
                     <>
                         <p>You don't have any groups!</p>
-                        <button>Create a Group</button>
                     </>
                 )}
+                <button>Create a Group</button>
             </div>
         )
     }
