@@ -67,7 +67,7 @@ class Chat extends Component {
     render(){
         const {messageInput, messages} = this.state,
               {id} = this.props.match.params;
-        console.log(messages)
+    
         return (
             <div className='chat'>
                 {id === 0
@@ -76,8 +76,8 @@ class Chat extends Component {
                         <p>Select or create a group to start chatting!</p>
                     </>
                 )
-                : messages.map(message => (
-                    <section key={message.message_id}>
+                : messages.map((message, i) => (
+                    <section key={i}>
                         <p>{message.message}</p>
                     </section>
                 ))}

@@ -4,9 +4,4 @@
     box-sizing: border-box;
     border-radius: 10px;
     background: white;
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    margin-top: -75px;
-    margin-left: -175px;
 }

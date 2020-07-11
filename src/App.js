@@ -5,7 +5,6 @@ import routes from './routes';
 import './App.css';
 
 function App(props) {
-  console.log(props)
   return (
     <div className="App">
       {props.location.pathname !== '/'

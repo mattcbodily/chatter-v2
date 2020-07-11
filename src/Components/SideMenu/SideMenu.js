@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
 import GroupModal from '../GroupModal/GroupModal';
 import './SideMenu.css';
 
@@ -9,22 +8,8 @@ class SideMenu extends Component {
     constructor(props){
         super(props);
         this.state = {
-            chatGroups: [],
             modalView: false
         }
-    }
-
-    componentDidMount(){
-        this.getGroups();
-    }
-
-    getGroups = () => {
-        const {user} = this.props;
-        axios.get(`/api/groups/${user.user_id}`)
-        .then(res => {
-            this.setState({chatGroups: res.data})
-        })
-        .catch(err => console.log(err));
     }
 
     handleToggle = () => {
@@ -32,7 +17,9 @@ class SideMenu extends Component {
     }
 
     render(){
-        const {chatGroups, modalView} = this.state;
+        const {modalView} = this.state,
+              {chatGroups} = this.props;
+
         return (
             <div className='side-menu'>
                 {chatGroups.length
