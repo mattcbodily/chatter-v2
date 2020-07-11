@@ -15,16 +15,24 @@ class SideMenu extends Component {
     }
 
     componentDidMount(){
+        this.getGroups();
+    }
+
+    getGroups = () => {
         const {user} = this.props;
         axios.get(`/api/groups/${user.user_id}`)
         .then(res => {
-            this.setState({chatGroups: res.data});
+            this.setState({chatGroups: res.data})
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
+    }
+
+    handleToggle = () => {
+        this.setState(prevState => ({modalView: !prevState.modalView}))
     }
 
     render(){
-        const {chatGroups} = this.state;
+        const {chatGroups, modalView} = this.state;
         return (
             <div className='side-menu'>
                 {chatGroups.length
@@ -36,7 +44,10 @@ class SideMenu extends Component {
                         <p>You don't have any groups!</p>
                     </>
                 )}
-                <button>Create a Group</button>
+                <button onClick={this.handleToggle}>Create a Group</button>
+                {modalView
+                ? <GroupModal getGroupFn={this.getGroups} modalFn={this.handleToggle}/>
+                : null}
             </div>
         )
     }
