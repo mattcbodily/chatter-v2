@@ -16,5 +16,20 @@ module.exports = {
         db.group.user_group_join({user_id, group_id: groupId[0].group_id});
 
         res.sendStatus(200);
+    },
+    getUsers: (req, res) => {
+        const db = req.app.get('db');
+
+        db.group.get_users()
+        .then(users => res.status(200).send(users))
+        .catch(err => console.log(err))
+    },
+    addUser: (req, res) => {
+        const {user_id, group_id} = req.body,
+              db = req.app.get('db');
+
+        db.group.user_group_join({user_id, group_id})
+        .then(() => res.sendStatus(200))
+        .catch(err => console.log(err))
     }
 }

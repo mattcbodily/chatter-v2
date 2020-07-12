@@ -32,7 +32,9 @@ app.get('/api/logout', authCtrl.logout);
 
 //Group Endpoints
 app.get('/api/groups/:id', groupCtrl.getUserGroups);
+app.get('/api/users', groupCtrl.getUsers);
 app.post('/api/group', groupCtrl.createGroup);
+app.post('/api/user', groupCtrl.addUser);
 
 //sockets
 io.on('connection', socket => {
