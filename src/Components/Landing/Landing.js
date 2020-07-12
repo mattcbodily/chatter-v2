@@ -7,8 +7,7 @@ class Landing extends Component {
     constructor(props){
         super(props);
         this.state = {
-            firstName: '',
-            lastName: '',
+            username: '',
             email: '',
             password: '',
             verPassword: '',
@@ -42,10 +41,10 @@ class Landing extends Component {
     }
 
     handleRegister = () => {
-        const {firstName, lastName, email, password, verPassword} = this.state,
+        const {username, email, password, verPassword} = this.state,
               {loginUser, history} = this.props;
         if(password && password === verPassword){
-            axios.post('/api/register', {firstName, lastName, email, password})
+            axios.post('/api/register', {username, email, password})
             .then(res => {
                 loginUser(res.data);
                 history.push('/chat/5');
@@ -55,17 +54,12 @@ class Landing extends Component {
     }
 
     render(){
-        const {firstName, lastName, email, password, verPassword, registerView} = this.state;
+        const {username, email, password, verPassword, registerView} = this.state;
         return (
             <div>
                 <h1>Welcome to Chatter!</h1>
                 {registerView
-                ? (
-                    <>
-                        <input value={firstName} name='firstName' onChange={e => this.handleInput(e)}/>
-                        <input value={lastName} name='lastName' onChange={e => this.handleInput(e)}/>
-                    </>
-                )
+                ? <input value={username} name='username' onChange={e => this.handleInput(e)}/>
                 : null}
                 <input value={email} name='email' onChange={e => this.handleInput(e)}/>
                 <input type='password' value={password} name='password' onChange={e => this.handleInput(e)}/>

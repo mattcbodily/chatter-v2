@@ -1,12 +1,12 @@
 insert into chat_users (
-    first_name,
-    last_name,
+    username,
     email,
-    password
+    password,
+    profile_picture
 ) values (
-    ${firstName},
-    ${lastName},
+    ${username},
     ${email},
-    ${hash}
+    ${hash},
+    ${profilePicture}
 )
-returning user_id, first_name, last_name, email;
+returning user_id, username, email;

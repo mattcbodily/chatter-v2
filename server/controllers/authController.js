@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
     register: async(req, res) => {
-        const {firstName, lastName, email, password} = req.body,
+        const {username, email, password} = req.body,
               db = req.app.get('db');
 
         const foundUser = await db.auth.check_user({email});
@@ -10,9 +10,12 @@ module.exports = {
             return res.status(400).send('Email already in use')
         }
 
+        let randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+            profilePicture = `https://robohash.org/${randomString}.png`;
+
         let salt = bcrypt.genSaltSync(10),
             hash = bcrypt.hashSync(password, salt),
-            newUser = await db.auth.register_user({firstName, lastName, email, hash});
+            newUser = await db.auth.register_user({username, email, hash, profilePicture});
 
         req.session.user = newUser[0];
         res.status(201).send(req.session.user);
