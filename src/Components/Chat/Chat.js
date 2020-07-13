@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import io from 'socket.io-client';
+import MessageDisplay from '../MessageDisplay/MessageDisplay';
 import './Chat.css';
 
 class Chat extends Component {
@@ -77,9 +78,7 @@ class Chat extends Component {
                     </>
                 )
                 : messages.map((message, i) => (
-                    <section key={i}>
-                        <p>{message.message}</p>
-                    </section>
+                    <MessageDisplay key={i} message={message} group={id} updateFn={this.updateMessages}/>
                 ))}
                 <section className='send-message'>
                     <input value={messageInput} onChange={e => this.handleInput(e.target.value)}/>

@@ -5,6 +5,7 @@ const express = require('express'),
       socket = require('socket.io'),
       authCtrl = require('./controllers/authController'),
       groupCtrl = require('./controllers/groupController'),
+      messageCtrl = require('./controllers/messageController'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
       app = express(),
       io = socket(app.listen(SERVER_PORT, () => console.log(`Chatting on ${SERVER_PORT}`)));
@@ -35,6 +36,9 @@ app.get('/api/groups/:id', groupCtrl.getUserGroups);
 app.get('/api/users', groupCtrl.getUsers);
 app.post('/api/group', groupCtrl.createGroup);
 app.post('/api/user', groupCtrl.addUsers);
+
+//Message Endpoints
+app.put('/api/message', messageCtrl.editMessage);
 
 //sockets
 io.on('connection', socket => {
