@@ -39,6 +39,7 @@ app.post('/api/user', groupCtrl.addUsers);
 
 //Message Endpoints
 app.put('/api/message', messageCtrl.editMessage);
+app.delete('/api/message/:id/:group', messageCtrl.deleteMessage);
 
 //sockets
 io.on('connection', socket => {

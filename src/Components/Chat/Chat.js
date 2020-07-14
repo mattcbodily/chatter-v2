@@ -77,7 +77,7 @@ class Chat extends Component {
                         <p>Select or create a group to start chatting!</p>
                     </>
                 )
-                : messages.map((message, i) => (
+                : messages.sort((a,b) => a.message_id - b.message_id).map((message, i) => (
                     <MessageDisplay key={i} message={message} group={id} updateFn={this.updateMessages}/>
                 ))}
                 <section className='send-message'>

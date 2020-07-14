@@ -22,6 +22,7 @@ class MessageDisplay extends Component {
     handleEdit = () => {
         const {messageInput} = this.state,
               {message, group, updateFn} = this.props;
+              console.log(message)
         axios.put('/api/message', {messageId: message.message_id, messageInput, group})
         .then(res => {
             updateFn(res.data);
@@ -29,6 +30,16 @@ class MessageDisplay extends Component {
 
         })
         .catch(err => console.log(err))
+    }
+
+    deleteMessage = () => {
+        const {message, group, updateFn} = this.props;
+
+        axios.delete(`/api/message/${message.message_id}/${group}`)
+        .then(res => {
+            updateFn(res.data);
+        })
+        .catch(err => console.log(err));
     }
 
     render(){
@@ -41,6 +52,7 @@ class MessageDisplay extends Component {
                     <div>
                         <p className='message'>{message.message}</p>
                         <button onClick={this.handleToggle}>Edit</button>
+                        <button onClick={this.deleteMessage}>Delete</button>
                     </div>
                 )
                 : (
