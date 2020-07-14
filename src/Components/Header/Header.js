@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import SideMenu from '../SideMenu/SideMenu';
@@ -29,7 +29,14 @@ class Header extends Component {
     render(){
         return (
             <div className='main-header'>
-                <SideMenu chatGroups={this.state.chatGroups} getGroupFn={this.getGroups}/>
+                <h1>Chatter</h1>
+                <nav>
+                    <Link to='/chat/0'>Dashboard</Link>
+                    <Link to='/profile'>Profile</Link>
+                </nav>
+                {this.props.location.pathname !== '/profile'
+                ? <SideMenu chatGroups={this.state.chatGroups} getGroupFn={this.getGroups}/>
+                : null}
             </div>
         )
     }

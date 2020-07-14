@@ -1,4 +1,7 @@
 .main-header {
     height: 75px;
     background: #0A81D1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
