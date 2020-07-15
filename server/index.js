@@ -4,6 +4,7 @@ const express = require('express'),
       session = require('express-session'),
       socket = require('socket.io'),
       authCtrl = require('./controllers/authController'),
+      userCtrl = require('./controllers/userController'),
       groupCtrl = require('./controllers/groupController'),
       messageCtrl = require('./controllers/messageController'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
@@ -30,6 +31,9 @@ massive({
 app.post('/api/register', authCtrl.register);
 app.post('/api/login', authCtrl.login);
 app.get('/api/logout', authCtrl.logout);
+
+//User Endpoints
+app.put('/api/user/:id', userCtrl.updateUser);
 
 //Group Endpoints
 app.get('/api/groups/:id', groupCtrl.getUserGroups);
