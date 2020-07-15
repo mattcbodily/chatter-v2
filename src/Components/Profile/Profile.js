@@ -9,12 +9,18 @@ class Profile extends Component {
         this.state = {
             username: this.props.user.username,
             email: this.props.user.email,
-            edit: false
+            profilePicture: this.props.user.profilePicture,
+            edit: false,
+            avatarArr: []
         }
     }
 
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value})
+    }
+
+    changeAvatar = (avatar) => {
+        this.setState({profilePicture: avatar})
     }
 
     handleLogout = () => {
@@ -27,13 +33,25 @@ class Profile extends Component {
 
     editView = () => {
         this.setState(prevState => ({editView: !prevState.editView}));
+
+        if(!this.state.editView){
+            console.log('hit')
+            let pictureArr = [],
+                randStr = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+            for(let i = 1; i <= 5; i++){
+                pictureArr.push(`https://robohash.org/${randStr}${i}.png`)
+            };
+
+            this.setState({avatarArr: pictureArr});
+        }
     }
 
     updateUser = () => {
-        const {username, email} = this.state,
+        const {username, email, profilePicture} = this.state,
               {user, loginUser} = this.props;
 
-        axios.put(`/api/user/${user.user_id}`, {username, email})
+        axios.put(`/api/user/${user.user_id}`, {username, email, profilePicture})
         .then(res => {
             loginUser(res.data);
             this.editView();
@@ -41,7 +59,7 @@ class Profile extends Component {
     }
 
     render(){
-        const {username, email, editView} = this.state,
+        const {username, email, editView, avatarArr} = this.state,
               {user} = this.props;
 
         return (
@@ -59,6 +77,14 @@ class Profile extends Component {
                     <>
                         <input value={username} name='username' onChange={e => this.handleInput(e)}/>
                         <input value={email} name='email' onChange={e => this.handleInput(e)}/>
+                        {avatarArr.map((avatar, i) => (
+                            <img 
+                                key={i} 
+                                style={{height: '200px', width: '200px'}} 
+                                src={avatar} 
+                                alt='New Avatar'
+                                onClick={() => this.changeAvatar(avatar)}/>
+                        ))}
                         <button onClick={this.updateUser}>Update</button>
                         <button onClick={this.editView}>Cancel</button>
                     </>
