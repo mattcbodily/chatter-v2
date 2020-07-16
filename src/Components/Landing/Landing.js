@@ -62,14 +62,14 @@ class Landing extends Component {
                 <img className='logo' src={logo} alt='Chatter'/>
                 <h1>Welcome to Chatter!</h1>
                 {registerView
-                ? <input value={username} name='username' onChange={e => this.handleInput(e)}/>
+                ? <input value={username} name='username' placeholder='Username' onChange={e => this.handleInput(e)}/>
                 : null}
-                <input value={email} name='email' onChange={e => this.handleInput(e)}/>
-                <input type='password' value={password} name='password' onChange={e => this.handleInput(e)}/>
+                <input value={email} name='email' placeholder='Email' onChange={e => this.handleInput(e)}/>
+                <input type='password' value={password} name='password' placeholder='Password' onChange={e => this.handleInput(e)}/>
                 {registerView
                 ? (
                     <>
-                        <input type='password' value={verPassword} name='verPassword' onChange={e => this.handleInput(e)}/>
+                        <input type='password' value={verPassword} name='verPassword' placeholder='Verify Password' onChange={e => this.handleInput(e)}/>
                         <button onClick={this.handleRegister}>Register</button>
                         <p>Already have an account? <span onClick={this.handleToggle}>Sign in here</span></p>
                     </>
