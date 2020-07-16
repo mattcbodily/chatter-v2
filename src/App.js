@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import Header from './Components/Header/Header';
 import routes from './routes';
-import './App.css';
+import './App.scss';
 
 function App(props) {
   return (

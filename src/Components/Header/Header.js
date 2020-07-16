@@ -3,7 +3,7 @@ import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import SideMenu from '../SideMenu/SideMenu';
-import './Header.css';
+import './Header.scss';
 
 class Header extends Component {
     constructor(props){

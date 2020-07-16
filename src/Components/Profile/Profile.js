@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {loginUser, logoutUser} from '../../redux/reducer';
+import './Profile.scss';
 
 class Profile extends Component {
     constructor(props){

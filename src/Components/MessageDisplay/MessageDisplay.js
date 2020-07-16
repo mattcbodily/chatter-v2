@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import './MessageDisplay.css';
+import './MessageDisplay.scss';
 
 class MessageDisplay extends Component {
     constructor(props){

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import GroupModal from '../GroupModal/GroupModal';
-import './SideMenu.css';
+import './SideMenu.scss';
 
 class SideMenu extends Component {
     constructor(props){

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import io from 'socket.io-client';
 import MessageDisplay from '../MessageDisplay/MessageDisplay';
-import './Chat.css';
+import './Chat.scss';
 
 class Chat extends Component {
     constructor(props){
