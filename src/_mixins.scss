@@ -1,0 +1,26 @@
+@import './variables';
+
+@mixin main-input {
+    height: 28px;
+    width: 80%;
+    box-sizing: border-box;
+    margin-top: 15px;
+    border: none;
+    border-bottom: 2px solid white;
+    font-size: 18px;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+
+@mixin main-button {
+    height: 35px;
+    width: 80%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #2CDA9D;
+    font-size: 18px;
+    color: white;
+}

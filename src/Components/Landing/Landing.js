@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {loginUser} from '../../redux/reducer';
+import logo from '../../assets/chatter-logo.png';
 import './Landing.scss';
 
 class Landing extends Component {
@@ -57,7 +58,8 @@ class Landing extends Component {
     render(){
         const {username, email, password, verPassword, registerView} = this.state;
         return (
-            <div>
+            <div className='landing'>
+                <img className='logo' src={logo} alt='Chatter'/>
                 <h1>Welcome to Chatter!</h1>
                 {registerView
                 ? <input value={username} name='username' onChange={e => this.handleInput(e)}/>

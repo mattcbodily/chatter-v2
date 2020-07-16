@@ -1,0 +1,27 @@
+@import '../../mixins';
+
+.landing {
+    min-height: 100vh;
+    background: #0A81D1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    height: 100px;
+}
+
+.landing input {
+    @include main-input;
+}
+
+.landing button {
+    @include main-button;
+}
+
+.landing span {
+    text-decoration: underline;
+}
