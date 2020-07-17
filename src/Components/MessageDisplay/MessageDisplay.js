@@ -22,7 +22,7 @@ class MessageDisplay extends Component {
     handleEdit = () => {
         const {messageInput} = this.state,
               {message, group, updateFn} = this.props;
-              console.log(message)
+        
         axios.put('/api/message', {messageId: message.message_id, messageInput, group})
         .then(res => {
             updateFn(res.data);
@@ -49,10 +49,14 @@ class MessageDisplay extends Component {
             <div>
                 {!editMessage
                 ? (
-                    <div>
-                        <p className='message'>{message.message}</p>
-                        <button onClick={this.handleToggle}>Edit</button>
-                        <button onClick={this.deleteMessage}>Delete</button>
+                    <div className='message'>
+                        <img src={message.profile_picture} alt='Message Sender'/>
+                        <section>
+                            <p className='sender'>{message.username}</p>
+                            <p className='message-text'>{message.message}</p>
+                        </section>
+                        {/* <button onClick={this.handleToggle}>Edit</button>
+                        <button onClick={this.deleteMessage}>Delete</button> */}
                     </div>
                 )
                 : (
