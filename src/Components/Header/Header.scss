@@ -1,6 +1,13 @@
 .main-header {
     height: 75px;
     background: #0A81D1;
+}
+
+.header-desktop {
+    display: none;
+}
+
+.header-mobile {
     display: flex;
     justify-content: space-between;
     align-items: center;
