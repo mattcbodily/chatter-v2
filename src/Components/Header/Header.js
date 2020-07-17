@@ -30,16 +30,27 @@ class Header extends Component {
         .catch(err => console.log(err));
     }
 
+    toggleSideMenu = () => {
+        this.setState(prevState => ({sideMenuView: !prevState.sideMenuView}))
+    }
+
+    toggleMainMenu = () => [
+        this.setState(prevState => ({mainMenuView: !prevState.mainMenuView}))
+    ]
+
     render(){
-        const {sideMenuView, mainMenuView} = this.state;
+        const {chatGroups, sideMenuView, mainMenuView} = this.state,
+              {id} = this.props.match.params;
+
+        console.log(this.props.match)
         return (
             <div className='main-header'>
                 <header className='header-mobile'>
-                    <img src={hamburger} alt='Menu'/>
+                    <img src={hamburger} alt='Menu' onClick={this.toggleSideMenu}/>
                     {sideMenuView
-                    ? <SideMenu />
+                    ? <SideMenu chatGroups={this.state.chatGroups} getGroupFn={this.getGroups} toggleFn={this.toggleSideMenu}/>
                     : null}
-                    <img src={moreVertical} alt='Group Menu'/>
+                    <img src={moreVertical} alt='Group Menu' onClick={this.toggleMainMenu}/>
                     {mainMenuView
                     ? (
                         <nav className='dropdown'>
