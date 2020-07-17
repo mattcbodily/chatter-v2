@@ -1,28 +1,64 @@
 .chat {
-    height: calc(100vh - 75px);
-    width: calc(100% - 300px);
-    position: fixed;
-    top: 75px;
-    left: 300px;
+    min-height: calc(100vh - 75px);
+    width: 100%;
 }
 
 .send-message {
     width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 20px;
     position: absolute;
     bottom: 0;
     display: flex;
+    justify-content: center;
+    background: white;
 }
 
 .send-message input {
     height: 35px;
-    width: 90%;
+    width: 65%;
     box-sizing: border-box;
+    padding-left: 10px;
+    margin-right: 5px;
+    border-radius: 20px;
     border: 1px solid lightgray;
+    font-size: 18px;
+    outline: none;
 }
 
 .send-message button {
     height: 35px;
-    width: 10%;
+    width: 20%;
     box-sizing: border-box;
+    border-radius: 20px;
     border: 1px solid lightgray;
 }
+
+// .chat {
+//     height: calc(100vh - 75px);
+//     width: calc(100% - 300px);
+//     position: fixed;
+//     top: 75px;
+//     left: 300px;
+// }
+
+// .send-message {
+//     width: 100%;
+//     position: absolute;
+//     bottom: 0;
+//     display: flex;
+// }
+
+// .send-message input {
+//     height: 35px;
+//     width: 90%;
+//     box-sizing: border-box;
+//     border: 1px solid lightgray;
+// }
+
+// .send-message button {
+//     height: 35px;
+//     width: 10%;
+//     box-sizing: border-box;
+//     border: 1px solid lightgray;
+// }
