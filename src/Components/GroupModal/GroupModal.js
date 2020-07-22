@@ -54,19 +54,18 @@ class GroupModal extends Component {
         this.setState({selectedUsers: selectedArr})
     }
 
+    inviteUser = () => {
+        const {selectedUsers} = this.state,
+              {group, toggleFn} = this.props;
+
+        axios.post('/api/user', {userArr: selectedUsers, group_id: group})
+        .then(() => toggleFn())
+        .catch(err => console.log(err));
+    }
+
     render(){
-        const {groupName, userInput, filteredUsers} = this.state;
         return (
-            <div className='group-modal'>
-                <h3>Create a Group</h3>
-                <input value={groupName} name='groupName' onChange={e => this.handleInput(e)}/>
-                <label>Invite Someone</label>
-                <input value={userInput} name='userInput' onChange={e => this.handleInput(e)}/>
-                {filteredUsers.map(user => (
-                    <p key={user.user_id} onClick={() => this.selectUser(user)}>{user.username}</p>
-                ))}
-                <button onClick={this.createGroup}>Submit</button>
-            </div>
+            this.props.render(this.handleInput, this.state.groupName, this.state.userInput, this.state.users, this.state.filteredUsers, this.state.selectedUsers, this.createGroup, this.selectUser, this.inviteUser)
         )
     }
 }
