@@ -39,15 +39,14 @@ class Header extends Component {
     ]
 
     render(){
-        const {chatGroups, sideMenuView, mainMenuView} = this.state,
-              {id} = this.props.match.params;
-
+        const {chatGroups, sideMenuView, mainMenuView} = this.state;
+        console.log(this.props)
         return (
             <div className='main-header'>
                 <header className='header-mobile'>
                     <img src={hamburger} alt='Menu' onClick={this.toggleSideMenu}/>
                     {sideMenuView
-                    ? <SideMenu chatGroups={this.state.chatGroups} getGroupFn={this.getGroups} toggleFn={this.toggleSideMenu}/>
+                    ? <SideMenu chatGroups={chatGroups} getGroupFn={this.getGroups} toggleFn={this.toggleSideMenu}/>
                     : null}
                     <img src={moreVertical} alt='Group Menu' onClick={this.toggleMainMenu}/>
                     {mainMenuView

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import GroupModal from '../GroupModal/GroupModal';
+import {selectChat} from '../../redux/reducer';
 import './SideMenu.scss';
 
 class SideMenu extends Component {
@@ -16,6 +17,13 @@ class SideMenu extends Component {
         this.setState(prevState => ({modalView: !prevState.modalView}))
     }
 
+    handleChatSelect = (id) => {
+        const {toggleFn, selectChat} = this.props;
+
+        selectChat(id);
+        toggleFn();
+    }
+
     render(){
         const {modalView} = this.state,
               {chatGroups, getGroupFn} = this.props;
@@ -24,7 +32,10 @@ class SideMenu extends Component {
             <div className='side-menu'>
                 {chatGroups.length
                 ? chatGroups.map(group => (
-                    <Link key={group.group_id} to={`/chat/${group.group_id}`} onClick={this.props.toggleFn}><p>{group.group_name}</p></Link>
+                    <Link 
+                        key={group.group_id} 
+                        to={`/chat/${group.group_id}`} 
+                        onClick={() => this.handleChatSelect(+group.group_id)}><p>{group.group_name}</p></Link>
                 ))
                 : (
                     <>
@@ -42,4 +53,4 @@ class SideMenu extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(SideMenu);
+export default connect(mapStateToProps, {selectChat})(SideMenu);
