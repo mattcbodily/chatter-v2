@@ -39,8 +39,9 @@ class Header extends Component {
     ]
 
     render(){
-        const {chatGroups, sideMenuView, mainMenuView} = this.state;
-        console.log(this.props)
+        const {chatGroups, sideMenuView, mainMenuView} = this.state,
+              {selectedChat} = this.props;
+
         return (
             <div className='main-header'>
                 <header className='header-mobile'>
@@ -52,7 +53,7 @@ class Header extends Component {
                     {mainMenuView
                     ? (
                         <nav className='dropdown'>
-                            <Link to='/chat/0' onClick={this.toggleMainMenu}>Dashboard</Link>
+                            <Link to={`/chat/${selectedChat}`} onClick={this.toggleMainMenu}>Dashboard</Link>
                             <Link to='/profile' onClick={this.toggleMainMenu}>Profile</Link>
                         </nav>
                     )

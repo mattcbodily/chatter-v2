@@ -21,6 +21,7 @@ class Chat extends Component {
         this.socket.on('message dispatched', data => {
             this.updateMessages(data);
         })
+        this.joinRoom();
     }
 
     componentDidUpdate(prevProps){
