@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import GroupModal from '../GroupModal/GroupModal';
 import {selectChat} from '../../redux/reducer';
+import addUserIcon from '../../assets/user-plus.svg';
+import settingIcon from '../../assets/settings.svg';
 import './SideMenu.scss';
 
 class SideMenu extends Component {
@@ -32,10 +34,14 @@ class SideMenu extends Component {
             <div className='side-menu'>
                 {chatGroups.length
                 ? chatGroups.map(group => (
-                    <Link 
-                        key={group.group_id} 
-                        to={`/chat/${group.group_id}`} 
-                        onClick={() => this.handleChatSelect(+group.group_id)}><p>{group.group_name}</p></Link>
+                    <section key={group.group_id} className='chat-group'>
+                        <Link 
+                            to={`/chat/${group.group_id}`} 
+                            className='chat-links'
+                            onClick={() => this.handleChatSelect(+group.group_id)}>{group.group_name}</Link>
+                        <img src={addUserIcon} alt='Add User'/>
+                        <img src={settingIcon} alt='Chat Settings'/>
+                    </section>
                 ))
                 : (
                     <>

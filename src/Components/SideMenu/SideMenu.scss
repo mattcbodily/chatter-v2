@@ -2,6 +2,7 @@
     height: calc(100vh - 75px);
     width: 300px;
     box-sizing: border-box;
+    padding-top: 10px;
     border: 1px solid lightgray;
     position: fixed;
     top: 75px;
@@ -16,4 +17,22 @@
     top: 0;
     background: rgba(0,0,0,.5);
     z-index: 1;
+}
+
+.chat-group {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-group img {
+    margin: 0 2px;
+}
+
+.chat-links {
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    margin-right: 6px;
 }
