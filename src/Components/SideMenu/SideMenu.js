@@ -24,7 +24,7 @@ class SideMenu extends Component {
             <div className='side-menu'>
                 {chatGroups.length
                 ? chatGroups.map(group => (
-                    <Link key={group.group_id} to={`/chat/${group.group_id}`}><p>{group.group_name}</p></Link>
+                    <Link key={group.group_id} to={`/chat/${group.group_id}`} onClick={this.props.toggleFn}><p>{group.group_name}</p></Link>
                 ))
                 : (
                     <>

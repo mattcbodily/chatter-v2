@@ -42,7 +42,6 @@ class Header extends Component {
         const {chatGroups, sideMenuView, mainMenuView} = this.state,
               {id} = this.props.match.params;
 
-        console.log(this.props.match)
         return (
             <div className='main-header'>
                 <header className='header-mobile'>
@@ -54,8 +53,8 @@ class Header extends Component {
                     {mainMenuView
                     ? (
                         <nav className='dropdown'>
-                            <Link to='/chat/0'>Dashboard</Link>
-                            <Link to='/profile'>Profile</Link>
+                            <Link to='/chat/0' onClick={this.toggleMainMenu}>Dashboard</Link>
+                            <Link to='/profile' onClick={this.toggleMainMenu}>Profile</Link>
                         </nav>
                     )
                     : null}
