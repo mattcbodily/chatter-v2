@@ -60,8 +60,8 @@ class Header extends Component {
                     {mainMenuView
                     ? (
                         <nav className='dropdown'>
-                            <Link to={`/chat/${selectedChat}`} onClick={this.toggleMainMenu}>Dashboard</Link>
-                            <Link to='/profile' onClick={this.toggleMainMenu}>Profile</Link>
+                            <Link to={`/chat/${selectedChat}`} className='dropdown-links' onClick={this.toggleMainMenu}>Dashboard</Link>
+                            <Link to='/profile' className='dropdown-links' onClick={this.toggleMainMenu}>Profile</Link>
                         </nav>
                     )
                     : null}

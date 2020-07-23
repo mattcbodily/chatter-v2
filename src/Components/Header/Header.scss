@@ -2,6 +2,7 @@
     height: 75px;
     background: #0A81D1;
     color: white;
+    position: relative;
 }
 
 .header-desktop {
@@ -15,4 +16,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.dropdown {
+    height: 70px;
+    width: 150px;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    position: absolute;
+    top: 55px;
+    right: 5px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-links {
+    height: 35px;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    margin: 3px 0;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.dropdown-links:hover {
+    background: darkgray;
+    color: white;
 }
