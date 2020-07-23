@@ -1,0 +1,49 @@
+@import '../../mixins';
+
+.profile input {
+    height: 30px;
+    width: 300px;
+    box-sizing: border-box;
+    font-size: 16px;
+    border: 1px solid lightgray;
+    padding-left: 5px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.profile button {
+    @include main-button;
+}
+
+.profile label {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 5px 0;
+}
+
+.profile-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-avatar {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background: lightblue;
+}
+
+.avatar-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.avatar-flex img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: lightblue;
+    margin: 10px;
+}

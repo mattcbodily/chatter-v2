@@ -36,11 +36,10 @@ class Profile extends Component {
         this.setState(prevState => ({editView: !prevState.editView}));
 
         if(!this.state.editView){
-            console.log('hit')
             let pictureArr = [],
                 randStr = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
-            for(let i = 1; i <= 5; i++){
+            for(let i = 1; i <= 6; i++){
                 pictureArr.push(`https://robohash.org/${randStr}${i}.png`)
             };
 
@@ -64,31 +63,37 @@ class Profile extends Component {
               {user} = this.props;
 
         return (
-            <div>
+            <div className='profile'>
                 {!editView
                 ? (
-                    <>
+                    <section className='profile-flex'>
                         <h1>Hello, {user.username}!</h1>
-                        <img src={user.profile_picture} alt={user.username}/>
+                        <img src={user.profile_picture} alt={user.username} className='profile-avatar'/>
                         <button onClick={this.editView}>Edit Information</button>
                         <button onClick={this.handleLogout}>Log out</button>
-                    </>
+                    </section>
                 )
                 : (
-                    <>
+                    <section className='profile-flex'>
+                        <h1>Edit Your Info</h1>
+                        <label>Username</label>
                         <input value={username} name='username' onChange={e => this.handleInput(e)}/>
+                        <label>Email</label>
                         <input value={email} name='email' onChange={e => this.handleInput(e)}/>
-                        {avatarArr.map((avatar, i) => (
-                            <img 
-                                key={i} 
-                                style={{height: '200px', width: '200px'}} 
-                                src={avatar} 
-                                alt='New Avatar'
-                                onClick={() => this.changeAvatar(avatar)}/>
-                        ))}
+                        <label>Change your Avatar?</label>
+                        <div className='avatar-flex'>
+                            {avatarArr.map((avatar, i) => (
+                                <img 
+                                    key={i} 
+                                    style={{height: '100px', width: '100px'}} 
+                                    src={avatar} 
+                                    alt='New Avatar'
+                                    onClick={() => this.changeAvatar(avatar)}/>
+                            ))}
+                        </div>
                         <button onClick={this.updateUser}>Update</button>
                         <button onClick={this.editView}>Cancel</button>
-                    </>
+                    </section>
                 )}
             </div>
         )

@@ -66,16 +66,17 @@ class GroupModal extends Component {
     }
 
     render(){
+        const {groupName, userInput, filteredUsers} = this.state;
         return (
             <div className='group-modal'>
                 <h3>Create a Group</h3>
-                <input value={groupName} name='groupName' onChange={e => handleInput(e)}/>
+                <input value={groupName} name='groupName' onChange={e => this.handleInput(e)}/>
                 <label>Invite Someone</label>
-                <input value={userInput} name='userInput' onChange={e => handleInput(e)}/>
+                <input value={userInput} name='userInput' onChange={e => this.handleInput(e)}/>
                 {filteredUsers?.map(user => (
-                    <p key={user.user_id} onClick={() => selectUser(user)}>{user.username}</p>
+                    <p key={user.user_id} onClick={() => this.selectUser(user)}>{user.username}</p>
                 ))}
-                <button onClick={createGroup}>Submit</button>
+                <button onClick={this.createGroup}>Submit</button>
             </div>
         )
     }
