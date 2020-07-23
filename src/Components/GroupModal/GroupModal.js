@@ -11,7 +11,9 @@ class GroupModal extends Component {
             userInput: '',
             users: [],
             filteredUsers: [],
-            selectedUsers: []
+            selectedUsers: [],
+            inviteView: false,
+            settingView: false
         }
     }
 
@@ -65,7 +67,16 @@ class GroupModal extends Component {
 
     render(){
         return (
-            this.props.render(this.handleInput, this.state.groupName, this.state.userInput, this.state.users, this.state.filteredUsers, this.state.selectedUsers, this.createGroup, this.selectUser, this.inviteUser)
+            <div className='group-modal'>
+                <h3>Create a Group</h3>
+                <input value={groupName} name='groupName' onChange={e => handleInput(e)}/>
+                <label>Invite Someone</label>
+                <input value={userInput} name='userInput' onChange={e => handleInput(e)}/>
+                {filteredUsers?.map(user => (
+                    <p key={user.user_id} onClick={() => selectUser(user)}>{user.username}</p>
+                ))}
+                <button onClick={createGroup}>Submit</button>
+            </div>
         )
     }
 }
