@@ -52,7 +52,10 @@ class Header extends Component {
                     {sideMenuView
                     ? <SideMenu chatGroups={chatGroups} getGroupFn={this.getGroups} toggleFn={this.toggleSideMenu}/>
                     : null}
-                    <h3 className='group-name'>{chatGroups.find(e => e.group_id === selectedChat)?.group_name}</h3>
+                    {this.props.location.pathname !== '/profile'
+                    ? <h3 className='group-name'>{chatGroups.find(e => e.group_id === selectedChat)?.group_name}</h3>
+                    : <h3>Profile</h3>}
+                    
                     <img src={moreVertical} alt='Group Menu' onClick={this.toggleMainMenu}/>
                     {mainMenuView
                     ? (

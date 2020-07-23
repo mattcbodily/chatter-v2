@@ -24,12 +24,13 @@
 .profile-flex {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .profile-avatar {
-    height: 250px;
-    width: 250px;
+    height: 300px;
+    width: 300px;
     border-radius: 50%;
     background: lightblue;
 }
