@@ -34,12 +34,18 @@ class Header extends Component {
     }
 
     toggleSideMenu = () => {
+        if(this.state.mainMenuView){
+            this.setState({mainMenuView: false});
+        }
         this.setState(prevState => ({sideMenuView: !prevState.sideMenuView}))
     }
 
-    toggleMainMenu = () => [
+    toggleMainMenu = () => {
+        if(this.state.sideMenuView){
+            this.setState({sideMenuView: false})
+        }
         this.setState(prevState => ({mainMenuView: !prevState.mainMenuView}))
-    ]
+    }
 
     render(){
         const {chatGroups, sideMenuView, mainMenuView} = this.state,
