@@ -19,10 +19,10 @@
 }
 
 .modal-backdrop {
-    height: 100vh;
+    height: calc(100vh - 75px);
     width: 100%;
     position: fixed;
-    top: 0;
+    top: 75px;
     background: rgba(0,0,0,.5);
     z-index: 1;
 }

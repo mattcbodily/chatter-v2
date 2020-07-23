@@ -1,6 +1,70 @@
+.full-modal-backdrop {
+    height: 100vh;
+    width: 100%;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
 .group-modal {
-    height: 150px;
+    min-height: 270px;
     width: 300px;
     box-sizing: border-box;
+    padding: 5px;
     border-radius: 10px;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    margin-top: -135px;
+    margin-left: -150px;
+    background: white;
+    color: black;
+    border-radius: 10px;
+}
+
+.group-modal h3 {
+    margin: 10px 0;
+}
+
+.group-modal label {
+    display: block;
+    margin: 3px 0;
+}
+
+
+.group-modal input {
+    height: 30px;
+    width: 80%;
+    box-sizing: border-box;
+    padding-left: 5px;
+    margin-bottom: 5px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.selected-user-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.selected-user {
+    height: 30px;
+    min-width: 125px;
+    box-sizing: border-box;
+    padding: 7px;
+    margin: 2px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0A81D1;
+    color: white;
+}
+
+.remove-icon {
+    margin-left: 3px;
 }

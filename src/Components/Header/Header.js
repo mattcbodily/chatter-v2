@@ -54,15 +54,14 @@ class Header extends Component {
         return (
             <div className='main-header'>
                 <header className='header-mobile'>
-                    <img src={hamburger} alt='Menu' onClick={this.toggleSideMenu}/>
+                    <img src={hamburger} alt='Menu' className='hamburger' onClick={this.toggleSideMenu}/>
                     {sideMenuView
                     ? <SideMenu chatGroups={chatGroups} getGroupFn={this.getGroups} toggleFn={this.toggleSideMenu}/>
                     : null}
                     {this.props.location.pathname !== '/profile'
                     ? <h3 className='group-name'>{chatGroups.find(e => e.group_id === selectedChat)?.group_name}</h3>
                     : <h3>Profile</h3>}
-                    
-                    <img src={moreVertical} alt='Group Menu' onClick={this.toggleMainMenu}/>
+                    <img src={moreVertical} alt='Group Menu' className='main-menu' onClick={this.toggleMainMenu}/>
                     {mainMenuView
                     ? (
                         <nav className='dropdown'>

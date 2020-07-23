@@ -31,27 +31,29 @@ class SideMenu extends Component {
               {chatGroups, getGroupFn} = this.props;
 
         return (
-            <div className='side-menu'>
-                {chatGroups.length
-                ? chatGroups.map(group => (
-                    <section key={group.group_id} className='chat-group'>
-                        <Link 
-                            to={`/chat/${group.group_id}`} 
-                            className='chat-links'
-                            onClick={() => this.handleChatSelect(+group.group_id)}>{group.group_name}</Link>
-                        <img src={addUserIcon} alt='Add User'/>
-                        <img src={settingIcon} alt='Chat Settings'/>
-                    </section>
-                ))
-                : (
-                    <>
-                        <p>You don't have any groups!</p>
-                    </>
-                )}
-                <button onClick={this.handleModalToggle}>Create a Group</button>
-                {modalView
-                ? <GroupModal getGroupFn={getGroupFn} modalFn={this.handleModalToggle} />
-                : null}
+            <div className='modal-backdrop'>
+                <div className='side-menu'>
+                    {chatGroups.length
+                    ? chatGroups.map(group => (
+                        <section key={group.group_id} className='chat-group'>
+                            <Link 
+                                to={`/chat/${group.group_id}`} 
+                                className='chat-links'
+                                onClick={() => this.handleChatSelect(+group.group_id)}>{group.group_name}</Link>
+                            <img src={addUserIcon} alt='Add User'/>
+                            <img src={settingIcon} alt='Chat Settings'/>
+                        </section>
+                    ))
+                    : (
+                        <>
+                            <p>You don't have any groups!</p>
+                        </>
+                    )}
+                    <button onClick={this.handleModalToggle}>Create a Group</button>
+                    {modalView
+                    ? <GroupModal getGroupFn={getGroupFn} toggleFn={this.handleModalToggle} />
+                    : null}
+                </div>
             </div>
         )
     }
