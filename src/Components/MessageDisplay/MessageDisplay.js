@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import editIcon from '../../assets/edit-2.svg';
+import deleteIcon from '../../assets/trash-2.svg';
 import './MessageDisplay.scss';
 
 class MessageDisplay extends Component {
     constructor(props){
         super(props);
         this.state = {
+            showOptions: 'hidden',
             editMessage: false,
             messageInput: this.props.message.message
         }
@@ -17,6 +20,14 @@ class MessageDisplay extends Component {
 
     handleToggle = () => {
         this.setState(prevState => ({editMessage: !prevState.editMessage}));
+    }
+
+    optionsToggle = () => {
+        if(this.state.showOptions === 'hidden'){
+            this.setState({showOptions: 'show'})
+        } else {
+            this.setState({showOptions: 'hidden'})
+        }
     }
 
     handleEdit = () => {
@@ -43,20 +54,22 @@ class MessageDisplay extends Component {
     }
 
     render(){
-        const {editMessage, messageInput} = this.state,
+        const {showOptions, editMessage, messageInput} = this.state,
               {message} = this.props;
         return (
             <div>
                 {!editMessage
                 ? (
-                    <div className='message'>
-                        <img src={message.profile_picture} alt='Message Sender'/>
+                    <div className='message' onMouseEnter={this.optionsToggle} onMouseLeave={this.optionsToggle}>
+                        <img className='sender-avatar' src={message.profile_picture} alt='Message Sender'/>
                         <section>
                             <p className='sender'>{message.username}</p>
                             <p className='message-text'>{message.message}</p>
                         </section>
-                        {/* <button onClick={this.handleToggle}>Edit</button>
-                        <button onClick={this.deleteMessage}>Delete</button> */}
+                        <div className={`message-options ${showOptions}`}>
+                            <img src={editIcon} alt='Edit Message'/>
+                            <img src={deleteIcon} alt='Delete Message' onClick={this.deleteMessage}/>
+                        </div>
                     </div>
                 )
                 : (

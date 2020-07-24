@@ -1,5 +1,5 @@
 .chat {
-    min-height: calc(100vh - 75px);
+    height: 100vh;
     width: 100%;
     box-sizing: border-box;
     padding-top: 75px;
@@ -8,11 +8,12 @@
 }
 
 .message-container {
-    max-height: calc(100vh - 75px);
+    max-height: calc(100vh - 155px);
     overflow: scroll;
 }
 
 .send-message {
+    height: 80px;
     width: 100%;
     box-sizing: border-box;
     padding: 20px 0;
