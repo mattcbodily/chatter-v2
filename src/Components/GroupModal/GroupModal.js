@@ -61,11 +61,11 @@ class GroupModal extends Component {
         })
     }
 
-    inviteUser = () => {
+    inviteUsers = () => {
         const {selectedUsers} = this.state,
               {group, toggleFn} = this.props;
 
-        axios.post('/api/user', {userArr: selectedUsers, group_id: group})
+        axios.post('/api/user', {userArr: selectedUsers, group_id: group.group_id})
         .then(() => toggleFn())
         .catch(err => console.log(err));
     }
@@ -80,13 +80,19 @@ class GroupModal extends Component {
 
     render(){
         const {groupName, userInput, filteredUsers, selectedUsers} = this.state,
-              {toggleFn} = this.props;
+              {create, toggleFn} = this.props;
         return (
             <div className='full-modal-backdrop'>
                 <div className='group-modal'>
-                    <h3>Create a Group</h3>
-                    <label>Group Name</label>
-                    <input value={groupName} name='groupName' onChange={e => this.handleInput(e)}/>
+                    {create
+                    ? (
+                        <div>
+                            <h3>Create a Group</h3>
+                            <label>Group Name</label>
+                            <input value={groupName} name='groupName' onChange={e => this.handleInput(e)}/>
+                        </div>
+                    )
+                    : <h3>Add Users</h3>}
                     <label>Invite Someone</label>
                     <input value={userInput} name='userInput' onChange={e => this.handleInput(e)}/>
                     {filteredUsers?.map(user => (
@@ -100,7 +106,9 @@ class GroupModal extends Component {
                             </div>
                         ))}
                     </div>
-                    <button onClick={this.createGroup}>Submit</button>
+                    {create
+                    ? <button onClick={this.createGroup}>Submit</button>
+                    : <button onClick={this.inviteUsers}>Invite</button>}
                     <button onClick={toggleFn}>Cancel</button>
                 </div>
             </div>

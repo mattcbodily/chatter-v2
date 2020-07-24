@@ -1,22 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import GroupDisplay from '../GroupDisplay/GroupDisplay';
 import GroupModal from '../GroupModal/GroupModal';
 import {selectChat} from '../../redux/reducer';
-import addUserIcon from '../../assets/user-plus.svg';
-import settingIcon from '../../assets/settings.svg';
 import './SideMenu.scss';
 
 class SideMenu extends Component {
     constructor(props){
         super(props);
         this.state = {
-            modalView: false
+            createModalView: false
         }
     }
 
-    handleModalToggle = () => {
-        this.setState(prevState => ({modalView: !prevState.modalView}))
+    createModalToggle = () => {
+        this.setState(prevState => ({createModalView: !prevState.createModalView}))
     }
 
     handleChatSelect = (id) => {
@@ -27,7 +25,7 @@ class SideMenu extends Component {
     }
 
     render(){
-        const {modalView} = this.state,
+        const {createModalView} = this.state,
               {chatGroups, getGroupFn} = this.props;
 
         return (
@@ -35,23 +33,20 @@ class SideMenu extends Component {
                 <div className='side-menu'>
                     {chatGroups.length
                     ? chatGroups.map(group => (
-                        <section key={group.group_id} className='chat-group'>
-                            <Link 
-                                to={`/chat/${group.group_id}`} 
-                                className='chat-links'
-                                onClick={() => this.handleChatSelect(+group.group_id)}>{group.group_name}</Link>
-                            <img src={addUserIcon} alt='Add User'/>
-                            <img src={settingIcon} alt='Chat Settings'/>
-                        </section>
+                        <GroupDisplay 
+                            key={group.group_id} 
+                            group={group} 
+                            selectChatFn={this.handleChatSelect}
+                            getGroupFn={getGroupFn}/>
                     ))
                     : (
                         <>
                             <p>You don't have any groups!</p>
                         </>
                     )}
-                    <button onClick={this.handleModalToggle}>Create a Group</button>
-                    {modalView
-                    ? <GroupModal getGroupFn={getGroupFn} toggleFn={this.handleModalToggle} />
+                    <button className='create-btn' onClick={this.createModalToggle}>Create a Group</button>
+                    {createModalView
+                    ? <GroupModal create={true} getGroupFn={getGroupFn} toggleFn={this.createModalToggle} />
                     : null}
                 </div>
             </div>

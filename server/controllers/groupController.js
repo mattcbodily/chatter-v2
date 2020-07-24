@@ -22,6 +22,22 @@ module.exports = {
 
         res.sendStatus(200);
     },
+    changeGroupName: (req, res) => {
+        const {groupName, group_id} = req.body,
+              db = req.app.get('db');
+
+        db.group.change_group_name({groupName, group_id})
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    deleteGroup: (req, res) => {
+        const {id} = req.params,
+              db = req.app.get('db');
+
+        db.group.delete_group({id: +id})
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err));
+    },
     getUsers: (req, res) => {
         const db = req.app.get('db');
 
@@ -34,8 +50,11 @@ module.exports = {
               db = req.app.get('db');
 
         //add the invited users
-        userArr.forEach(user => {
-           db.group.user_group_join({user_id: user.user_id, group_id})
+        userArr.forEach(async user => {
+            const foundUser = await db.group.check_group_users({user_id: user.user_id, group_id});
+            if(!foundUser[0]){
+                db.group.user_group_join({user_id: user.user_id, group_id})
+            }
         })
 
         res.sendStatus(200);

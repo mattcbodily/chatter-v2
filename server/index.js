@@ -40,6 +40,8 @@ app.get('/api/groups/:id', groupCtrl.getUserGroups);
 app.get('/api/users', groupCtrl.getUsers);
 app.post('/api/group', groupCtrl.createGroup);
 app.post('/api/user', groupCtrl.addUsers);
+app.put('/api/group-name', groupCtrl.changeGroupName);
+app.delete('/api/group/:id', groupCtrl.deleteGroup);
 
 //Message Endpoints
 app.put('/api/message', messageCtrl.editMessage);
