@@ -67,7 +67,7 @@ class MessageDisplay extends Component {
                             <p className='message-text'>{message.message}</p>
                         </section>
                         <div className={`message-options ${showOptions}`}>
-                            <img src={editIcon} alt='Edit Message'/>
+                            <img src={editIcon} alt='Edit Message' onClick={this.handleToggle}/>
                             <img src={deleteIcon} alt='Delete Message' onClick={this.deleteMessage}/>
                         </div>
                     </div>
