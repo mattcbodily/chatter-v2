@@ -14,7 +14,7 @@
 }
 
 .create-btn {
-    @include main-button;
+    @include main-button-mobile;
     width: 210px;
 }
 

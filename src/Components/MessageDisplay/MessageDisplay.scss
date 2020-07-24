@@ -1,14 +1,16 @@
 .message {
+    height: 65px;
     width: 100%;
     box-sizing: border-box;
     padding: 0 15px;
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
+    align-items: center;
     position: relative;
 }
 
 .message:hover {
-    background: lightgray;
+    background: #EEEEEE;
 }
 
 .sender-avatar {
@@ -34,12 +36,12 @@
     height: 25px;
     width: 50px;
     box-sizing: border-box;
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 5px;
     position: absolute;
     top: -5px;
     right: 8px;
-    background: lightgray;
+    background: #EEEEEE;
     overflow: hidden;
 }
 
@@ -51,7 +53,7 @@
 }
 
 .message-options img:hover {
-    background: gray;
+    background: lightgray;
 }
 
 .hidden {

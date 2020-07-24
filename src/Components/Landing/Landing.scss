@@ -15,13 +15,23 @@
 }
 
 .landing input {
-    @include main-input;
+    @include main-input-mobile;
 }
 
 .landing button {
-    @include main-button;
+    @include main-button-mobile;
 }
 
 .landing span {
     text-decoration: underline;
+}
+
+@media(min-width: 650px){
+    .landing input {
+        @include main-input-desktop;
+    }
+
+    .landing button {
+        @include main-button-desktop;
+    }
 }

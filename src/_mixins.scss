@@ -1,6 +1,6 @@
 @import './variables';
 
-@mixin main-input {
+@mixin main-input-mobile {
     height: 28px;
     width: 80%;
     box-sizing: border-box;
@@ -13,7 +13,12 @@
     outline: none;
 }
 
-@mixin main-button {
+@mixin main-input-desktop {
+    @include main-input-mobile;
+    width: 400px;
+}
+
+@mixin main-button-mobile {
     height: 35px;
     width: 80%;
     box-sizing: border-box;
@@ -24,4 +29,9 @@
     font-size: 18px;
     font-weight: bold;
     color: white;
+}
+
+@mixin main-button-desktop {
+    @include main-button-mobile;
+    width: 400px;
 }
