@@ -1,6 +1,9 @@
 .main-header {
     height: 75px;
     width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 2;
     background: #0A81D1;
     color: white;
 }

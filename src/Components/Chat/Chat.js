@@ -72,15 +72,19 @@ class Chat extends Component {
     
         return (
             <div className='chat'>
-                {id === 0
-                ? (
-                    <>
-                        <p>Select or create a group to start chatting!</p>
-                    </>
-                )
-                : messages.sort((a,b) => a.message_id - b.message_id).map((message, i) => (
-                    <MessageDisplay key={i} message={message} group={id} updateFn={this.updateMessages}/>
-                ))}
+                    {id === 0
+                    ? (
+                        <>
+                            <p>Select or create a group to start chatting!</p>
+                        </>
+                    )
+                    : (
+                        <div className='message-container'>
+                            {messages.sort((a,b) => a.message_id - b.message_id).map((message, i) => (
+                                <MessageDisplay key={i} message={message} group={id} updateFn={this.updateMessages}/>
+                            ))}
+                        </div>
+                    )}
                 <section className='send-message'>
                     <input value={messageInput} onChange={e => this.handleInput(e.target.value)}/>
                     <button onClick={this.sendMessage}>Send</button>

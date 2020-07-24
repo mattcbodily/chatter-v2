@@ -2,14 +2,23 @@
     min-height: calc(100vh - 75px);
     width: 100%;
     box-sizing: border-box;
+    padding-top: 75px;
+    position: relative;
+    z-index: 1;
+}
+
+.message-container {
+    max-height: calc(100vh - 75px);
+    overflow: scroll;
 }
 
 .send-message {
     width: 100%;
     box-sizing: border-box;
-    padding-bottom: 20px;
+    padding: 20px 0;
     position: absolute;
     bottom: 0;
+    z-index: 1;
     display: flex;
     justify-content: center;
     background: white;
