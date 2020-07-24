@@ -11,8 +11,14 @@ class GroupDisplay extends Component {
         super(props);
         this.state = {
             inviteView: false,
-            settingView: false
+            settingView: false,
+            editName: false,
+            editInput: ''
         }
+    }
+
+    handleInput = (val) => {
+        this.setState({editInput: val})
     }
 
     toggleInviteView = () => {
@@ -29,6 +35,22 @@ class GroupDisplay extends Component {
         this.setState(prevState => ({settingView: !prevState.settingView}))
     }
 
+    toggleEditNameView = () => {
+        this.setState(prevState => ({editName: !prevState.editName}));
+    }
+
+    editGroupName = () => {
+        const {editInput} = this.state,
+              {group, getGroupFn} = this.props;
+
+        axios.put('/api/group-name', {groupName: editInput, group_id: group.group_id})
+        .then(() => {
+            getGroupFn();
+            this.toggleEditNameView();
+        })
+        .catch(err => console.log(err))
+    }
+
     deleteGroup = () => {
         const {group, getGroupFn} = this.props;
 
@@ -38,15 +60,17 @@ class GroupDisplay extends Component {
     }
 
     render(){
-        const {inviteView, settingView} = this.state,
+        const {inviteView, settingView, editName, editInput} = this.state,
               {group, selectChatFn, getGroupFn} = this.props;
         return (
             <div className='group-display-flex'>
                 <section className='group-display'>
-                    <Link 
+                    {!editName
+                    ? <Link 
                         to={`/chat/${group.group_id}`} 
                         className='chat-links'
                         onClick={() => selectChatFn(+group.group_id)}>{group.group_name}</Link>
+                    : <input value={editInput} onChange={e => this.handleInput(e.target.value)}/>}
                     <img src={addUserIcon} alt='Add User' onClick={this.toggleInviteView}/>
                     <img src={settingIcon} alt='Chat Settings' onClick={this.toggleSettingView}/>
                 </section>
@@ -55,9 +79,20 @@ class GroupDisplay extends Component {
                 : null}    
                 {settingView
                 ? (
-                    <div className='setting-flex'>
-                        <button className='edit-btn'>Edit Name</button>
-                        <button className='delete-btn' onClick={this.deleteGroup}>Delete</button>
+                    <div>
+                        {editName
+                        ? (
+                            <div className='setting-flex'>
+                                <button className='edit-btn' onClick={this.editGroupName}>Submit</button>
+                                <button className='delete-btn' onClick={this.toggleEditNameView}>Cancel</button>
+                            </div>
+                        )
+                        : (
+                            <div className='setting-flex'>
+                                <button className='edit-btn' onClick={this.toggleEditNameView}>Edit Name</button>
+                                <button className='delete-btn' onClick={this.deleteGroup}>Delete</button>
+                            </div>
+                        )}
                     </div>
                 )
                 : null}
