@@ -24,3 +24,9 @@ create table if not exists message (
     sender_id int references chat_users,
     message text
 );
+
+create table if not exists message_reaction (
+    reaction_id serial primary key,
+    message_id int references message(message_id),
+    reaction varchar(50)
+)

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Picker} from 'emoji-mart';
 import editIcon from '../../assets/edit-2.svg';
 import deleteIcon from '../../assets/trash-2.svg';
+import 'emoji-mart/css/emoji-mart.css'
 import './MessageDisplay.scss';
 
 class MessageDisplay extends Component {
@@ -10,6 +12,7 @@ class MessageDisplay extends Component {
         this.state = {
             showOptions: 'hidden',
             editMessage: false,
+            showPicker: false,
             messageInput: this.props.message.message
         }
     }
@@ -53,8 +56,12 @@ class MessageDisplay extends Component {
         .catch(err => console.log(err));
     }
 
+    addEmoji = (e) => {
+        console.log(e)
+    }
+
     render(){
-        const {showOptions, editMessage, messageInput} = this.state,
+        const {showOptions, editMessage, showPicker, messageInput} = this.state,
               {message} = this.props;
         return (
             <div>
@@ -66,6 +73,10 @@ class MessageDisplay extends Component {
                             <p className='sender'>{message.username}</p>
                             <p className='message-text'>{message.message}</p>
                         </section>
+                        <button onClick={() => this.setState({showPicker: true})}>Show Emoji</button>
+                        {showPicker
+                        ? <Picker onSelect={e => this.addEmoji(e)}/>
+                        : null}
                         <div className={`message-options ${showOptions}`}>
                             <img src={editIcon} alt='Edit Message' onClick={this.handleToggle}/>
                             <img src={deleteIcon} alt='Delete Message' onClick={this.deleteMessage}/>
