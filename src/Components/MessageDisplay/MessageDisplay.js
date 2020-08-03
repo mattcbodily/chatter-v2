@@ -33,12 +33,11 @@ class MessageDisplay extends Component {
         }
     }
 
-
     addEmoji = (e) => {
         const {message_id} = this.props.message;
-        axios.post('/api/message-reaction', {message_id, reaction: e.name})
-        .then(res => console.log('added emoji'))
-        .catch(err => console.log(err))
+
+        this.props.emojiFn(message_id, e);
+        this.setState({showPicker: false});
     }
 
     handleEdit = () => {

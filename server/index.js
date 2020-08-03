@@ -44,7 +44,6 @@ app.put('/api/group-name', groupCtrl.changeGroupName);
 app.delete('/api/group/:id', groupCtrl.deleteGroup);
 
 //Message Endpoints
-app.post('/api/message-reaction', messageCtrl.addMessageReaction);
 app.put('/api/message', messageCtrl.editMessage);
 app.delete('/api/message/:id/:group', messageCtrl.deleteMessage);
 
@@ -63,15 +62,22 @@ io.on('connection', socket => {
         io.to(room).emit('room joined', messages);
     });
     socket.on("message sent", async data => {
-        const { group, sender, message } = data,
+        const {group, sender, message} = data,
               db = app.get("db");
 
-        await db.message.create_message({ group, sender, message });
-        let messages = await db.message.message_history({ group });
+        await db.message.create_message({group, sender, message});
+        let messages = await db.message.message_history({group});
         socket.emit("message dispatched", messages);
       });
-    
-      socket.on("disconnect", () => {
+    socket.on("emoji react", async data => {
+        const {message_id, reaction} = data,
+              db = app.get('db');
+
+        await db.message.add_message_reaction({message_id, reaction});
+        let messages = await db.message.message_history({group});
+        socket.emit('reaction added', messages)
+    })
+    socket.on("disconnect", () => {
         console.log("User Disconnected");
-      });
+    });
 });

@@ -16,8 +16,11 @@ class Chat extends Component {
     componentDidMount(){
         this.socket = io('http://localhost:3333');
         this.socket.on('room joined', data => {
-            this.joinSuccess(data)
-          })
+            this.joinSuccess(data);
+        })
+        this.socket.on('reaction added', data => {
+            this.updateMessages(data);
+        })
         this.socket.on('message dispatched', data => {
             this.updateMessages(data);
         })
@@ -66,9 +69,17 @@ class Chat extends Component {
         })
     }
 
+    addEmoji = (id, e) => {
+        this.socket.emit('emoji react', {
+            message_id: id,
+            reaction: e.name,
+            group: +this.props.match.params.id
+        })
+    }
+
     render(){
         const {messageInput, messages} = this.state,
-              {id} = this.props.match.params;
+              {id} = +this.props.match.params;
     
         return (
             <div className='chat'>
@@ -81,7 +92,7 @@ class Chat extends Component {
                     : (
                         <div className='message-container'>
                             {messages.sort((a,b) => a.message_id - b.message_id).map((message, i) => (
-                                <MessageDisplay key={i} message={message} group={id} updateFn={this.updateMessages}/>
+                                <MessageDisplay key={i} message={message} group={id} updateFn={this.updateMessages} emojiFn={this.addEmoji}/>
                             ))}
                         </div>
                     )}
