@@ -44,6 +44,7 @@ app.put('/api/group-name', groupCtrl.changeGroupName);
 app.delete('/api/group/:id', groupCtrl.deleteGroup);
 
 //Message Endpoints
+app.get('/api/message-reaction/:id', messageCtrl.getMessageReactions);
 app.put('/api/message', messageCtrl.editMessage);
 app.delete('/api/message/:id/:group', messageCtrl.deleteMessage);
 

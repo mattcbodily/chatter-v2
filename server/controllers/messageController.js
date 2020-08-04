@@ -1,4 +1,12 @@
 module.exports = {
+    getMessageReactions: (req, res) => {
+        const {id} = req.params,
+              db = req.app.get('db');
+
+        db.message.get_message_reactions({id: +id})
+        .then(reactions => res.status(200).send(reactions))
+        .catch(err => res.status(500).send(err))
+    },
     editMessage: async(req, res) => {
         const {messageId, messageInput, group} = req.body,
               db = req.app.get('db');

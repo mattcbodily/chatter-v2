@@ -69,13 +69,13 @@ class Chat extends Component {
         })
     }
 
-    addEmoji = (id, e) => {
-        this.socket.emit('emoji react', {
-            message_id: id,
-            reaction: e.name,
-            group: +this.props.match.params.id
-        })
-    }
+    // addEmoji = (id, e) => {
+    //     this.socket.emit('emoji react', {
+    //         message_id: id,
+    //         reaction: e.name,
+    //         group: +this.props.match.params.id
+    //     })
+    // }
 
     render(){
         const {messageInput, messages} = this.state,

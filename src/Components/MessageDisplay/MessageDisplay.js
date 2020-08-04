@@ -10,11 +10,18 @@ class MessageDisplay extends Component {
     constructor(props){
         super(props);
         this.state = {
+            reactions: [],
             showOptions: 'hidden',
             editMessage: false,
             showPicker: false,
             messageInput: this.props.message.message
         }
+    }
+
+    componentDidMount(){
+        axios.get(`/api/message-reaction/${this.props.message.message_id}`)
+        .then(res => this.setState({reactions: res.data}))
+        .catch(err => console.log(err));
     }
 
     handleInput = (val) => {
@@ -64,6 +71,7 @@ class MessageDisplay extends Component {
     }
 
     render(){
+        console.log(this.state.reactions)
         const {showOptions, editMessage, showPicker, messageInput} = this.state,
               {message} = this.props;
         return (
