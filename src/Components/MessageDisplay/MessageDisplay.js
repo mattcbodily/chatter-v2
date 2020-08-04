@@ -3,6 +3,8 @@ import axios from 'axios';
 import {Picker} from 'emoji-mart';
 import editIcon from '../../assets/edit-2.svg';
 import deleteIcon from '../../assets/trash-2.svg';
+import smileIcon from '../../assets/smile.svg';
+import plusIcon from '../../assets/plus.svg';
 import 'emoji-mart/css/emoji-mart.css'
 import './MessageDisplay.scss';
 
@@ -88,7 +90,10 @@ class MessageDisplay extends Component {
                             <p className='sender'>{message.username}</p>
                             <p className='message-text'>{message.message}</p>
                         </section>
-                        <button onClick={() => this.setState({showPicker: true})}>Show Emoji</button>
+                        <div className='add-emoji-box' onClick={() => this.setState(prevState => ({showPicker: !prevState.showPicker}))}>
+                            <img src={smileIcon} alt='add emoji part one'/>
+                            <img src={plusIcon} alt='add emoji part two'/>
+                        </div>
                         {showPicker
                         ? <Picker onSelect={e => this.addEmoji(e)}/>
                         : null}
