@@ -24,6 +24,17 @@ class MessageDisplay extends Component {
         .catch(err => console.log(err));
     }
 
+    addEmoji = (e) => {
+        const {message_id} = this.props.message;
+
+        this.props.socket.emit('emoji react', {
+            message_id,
+            reaction: e.name,
+            group: this.props.group
+        })
+        this.setState({showPicker: false});
+    }
+
     handleInput = (val) => {
         this.setState({messageInput: val})
     }
@@ -38,13 +49,6 @@ class MessageDisplay extends Component {
         } else {
             this.setState({showOptions: 'hidden'})
         }
-    }
-
-    addEmoji = (e) => {
-        const {message_id} = this.props.message;
-
-        this.props.emojiFn(message_id, e);
-        this.setState({showPicker: false});
     }
 
     handleEdit = () => {
