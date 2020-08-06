@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Picker} from 'emoji-mart';
+import {Picker, Emoji} from 'emoji-mart';
 import editIcon from '../../assets/edit-2.svg';
 import deleteIcon from '../../assets/trash-2.svg';
 import smileIcon from '../../assets/smile.svg';
@@ -31,7 +31,7 @@ class MessageDisplay extends Component {
 
         this.props.socket.emit('emoji react', {
             message_id,
-            reaction: e.name,
+            reaction: e.colons,
             group: this.props.group
         })
         this.setState({showPicker: false});
@@ -77,9 +77,9 @@ class MessageDisplay extends Component {
     }
 
     render(){
-        console.log(this.state.reactions)
-        const {showOptions, editMessage, showPicker, messageInput} = this.state,
+        const {reactions, showOptions, editMessage, showPicker, messageInput} = this.state,
               {message} = this.props;
+        console.log(reactions)
         return (
             <div>
                 {!editMessage
@@ -101,6 +101,7 @@ class MessageDisplay extends Component {
                             <img src={editIcon} alt='Edit Message' onClick={this.handleToggle}/>
                             <img src={deleteIcon} alt='Delete Message' onClick={this.deleteMessage}/>
                         </div>
+                        {}
                     </div>
                 )
                 : (
@@ -110,7 +111,17 @@ class MessageDisplay extends Component {
                         <button onClick={this.handleToggle}>Cancel</button>
                     </div>
                 )}
-                
+                {reactions.length
+                ? (
+                    <div className='emoji-flex'>
+                        {reactions.map(reaction => (
+                        <div className='emoji-container'>
+                            <Emoji key={reaction.reaction_id} emoji={reaction.reaction} size={18}/>
+                        </div>
+                        ))}
+                    </div>
+                )
+                : null}
             </div>
         )
     }

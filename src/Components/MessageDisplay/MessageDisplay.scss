@@ -3,7 +3,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0 15px;
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
     position: relative;
@@ -75,4 +75,22 @@
     justify-content: center;
     align-items: center;
     background: darkgray;
+}
+
+.emoji-flex {
+    box-sizing: border-box;
+    padding-left: 82px;
+    display: flex;
+}
+
+.emoji-container {
+    height: 22px;
+    width: 35px;
+    box-sizing: border-box;
+    margin-right: 2px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: gray;
 }

@@ -71,7 +71,7 @@ io.on('connection', socket => {
         socket.emit("message dispatched", messages);
       });
     socket.on("emoji react", async data => {
-        const {message_id, reaction} = data,
+        const {message_id, reaction, group} = data,
               db = app.get('db');
 
         await db.message.add_message_reaction({message_id, reaction});
