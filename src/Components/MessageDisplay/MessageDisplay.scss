@@ -85,12 +85,18 @@
 
 .emoji-container {
     height: 22px;
-    width: 35px;
+    width: 40px;
     box-sizing: border-box;
     margin-right: 2px;
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: gray;
+    background: darkgray;
+}
+
+.emoji-container p {
+    color: white;
+    font-size: 16px;
+    margin-left: 2px;
 }

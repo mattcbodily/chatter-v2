@@ -13,6 +13,7 @@ class MessageDisplay extends Component {
         super(props);
         this.state = {
             reactions: [],
+            reactionCounts: [],
             showOptions: 'hidden',
             editMessage: false,
             showPicker: false,
@@ -22,8 +23,31 @@ class MessageDisplay extends Component {
 
     componentDidMount(){
         axios.get(`/api/message-reaction/${this.props.message.message_id}`)
-        .then(res => this.setState({reactions: res.data}))
+        .then(res => {
+            this.setState({reactions: res.data})
+            if(res.data.length){
+                this.sortEmoji();
+            }
+        })
         .catch(err => console.log(err));
+    }
+
+    sortEmoji = () => {
+        const {reactions} = this.state,
+              reactionNames = [],
+              countArr = [];
+
+        for(let i = 0; i < reactions.length; i++){
+            if(!reactionNames.includes(reactions[i].reaction)){
+                reactionNames.push(reactions[i].reaction);
+                countArr.push({reaction: reactions[i].reaction, count: 1})
+            } else {
+                let reactionCopy = countArr.find(e => e.reaction === reactions[i].reaction);
+                reactionCopy.count += 1;
+            }
+        }
+
+        this.setState({reactionCounts: countArr})
     }
 
     addEmoji = (e) => {
@@ -35,6 +59,7 @@ class MessageDisplay extends Component {
             group: this.props.group
         })
         this.setState({showPicker: false});
+        this.sortEmoji();
     }
 
     handleInput = (val) => {
@@ -77,9 +102,8 @@ class MessageDisplay extends Component {
     }
 
     render(){
-        const {reactions, showOptions, editMessage, showPicker, messageInput} = this.state,
+        const {reactionCounts, showOptions, editMessage, showPicker, messageInput} = this.state,
               {message} = this.props;
-        console.log(reactions)
         return (
             <div>
                 {!editMessage
@@ -111,12 +135,13 @@ class MessageDisplay extends Component {
                         <button onClick={this.handleToggle}>Cancel</button>
                     </div>
                 )}
-                {reactions.length
+                {reactionCounts.length
                 ? (
                     <div className='emoji-flex'>
-                        {reactions.map(reaction => (
-                        <div className='emoji-container'>
-                            <Emoji key={reaction.reaction_id} emoji={reaction.reaction} size={18}/>
+                        {reactionCounts.map((reaction, i) => (
+                        <div  key={i} className='emoji-container'>
+                            <Emoji emoji={reaction.reaction} size={18}/>
+                            <p>{reaction.count}</p>
                         </div>
                         ))}
                     </div>
