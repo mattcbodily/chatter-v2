@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 import {Picker, Emoji} from 'emoji-mart';
 import editIcon from '../../assets/edit-2.svg';
 import deleteIcon from '../../assets/trash-2.svg';
@@ -22,6 +23,17 @@ class MessageDisplay extends Component {
     }
 
     componentDidMount(){
+        this.getEmojis();
+    }
+
+    // componentDidUpdate(prevProps, prevState){
+    //     if(prevState.reactions.length !== this.state.reactions.length){
+    //         console.log('hit')
+    //         this.sortEmoji()
+    //     }
+    // }
+
+    getEmojis = () => {
         axios.get(`/api/message-reaction/${this.props.message.message_id}`)
         .then(res => {
             this.setState({reactions: res.data})
@@ -56,10 +68,10 @@ class MessageDisplay extends Component {
         this.props.socket.emit('emoji react', {
             message_id,
             reaction: e.colons,
-            group: this.props.group
+            group: +this.props.match.params.id
         })
         this.setState({showPicker: false});
-        this.sortEmoji();
+        this.getEmojis();
     }
 
     handleInput = (val) => {
@@ -152,4 +164,4 @@ class MessageDisplay extends Component {
     }
 }
 
-export default MessageDisplay;
+export default withRouter(MessageDisplay);
