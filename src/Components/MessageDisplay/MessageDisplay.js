@@ -46,10 +46,11 @@ class MessageDisplay extends Component {
         for(let i = 0; i < reactions.length; i++){
             if(!reactionNames.includes(reactions[i].reaction)){
                 reactionNames.push(reactions[i].reaction);
-                countArr.push({reaction: reactions[i].reaction, count: 1})
+                countArr.push({reaction: reactions[i].reaction, count: 1, senders: [reactions[i].sender_id]})
             } else {
                 let reactionCopy = countArr.find(e => e.reaction === reactions[i].reaction);
                 reactionCopy.count += 1;
+                reactionCopy.senders.push(reactions[i].sender_id);
             }
         }
 
@@ -57,13 +58,15 @@ class MessageDisplay extends Component {
     }
 
     addEmoji = (e) => {
-        const {message_id} = this.props.message;
-
+        const {reactionCounts} = this.state,
+              {user, match} = this.props,
+              {message_id} = this.props.message;
+        
         this.props.socket.emit('emoji react', {
             message_id,
             reaction: e.colons,
-            sender: this.props.user.user_id,
-            group: +this.props.match.params.id
+            sender: user.user_id,
+            group: +match.params.id
         })
         this.setState({showPicker: false});
         this.getEmojis();
@@ -111,6 +114,7 @@ class MessageDisplay extends Component {
     render(){
         const {reactionCounts, showOptions, editMessage, showPicker, messageInput} = this.state,
               {message} = this.props;
+              console.log(reactionCounts)
         return (
             <div>
                 {!editMessage
