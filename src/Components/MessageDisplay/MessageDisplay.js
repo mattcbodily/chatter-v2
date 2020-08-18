@@ -59,14 +59,21 @@ class MessageDisplay extends Component {
 
     addEmoji = (e) => {
         const {reactionCounts} = this.state,
-              {user, match} = this.props,
+              {socket, user, match} = this.props,
               {message_id} = this.props.message,
               reaction = reactionCounts.find(emojiObj => emojiObj.colons === e.colons);
 
         if(reaction && reaction.senders.includes(user.user_id)){
-            alert('no can do, buddy boy')
+            socket.emit('delete emoji', {
+                colons: e.colons,
+                sender: user.user_id,
+                group: +match.params.id
+            })
+            reaction.count -= 1;
+            this.setState({showPicker: false});
+            this.getEmojis();
         } else {
-            this.props.socket.emit('emoji react', {
+            socket.emit('emoji react', {
                 message_id,
                 colons: e.colons,
                 sender: user.user_id,
@@ -119,7 +126,7 @@ class MessageDisplay extends Component {
     render(){
         const {reactionCounts, showOptions, editMessage, showPicker, messageInput} = this.state,
               {message} = this.props;
-              console.log(reactionCounts)
+
         return (
             <div>
                 {!editMessage

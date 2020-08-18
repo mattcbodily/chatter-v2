@@ -21,6 +21,9 @@ class Chat extends Component {
         this.socket.on('reaction added', data => {
             this.updateMessages(data);
         })
+        this.socket.on('reaction deleted', data => {
+            this.updateMessages(data);
+        })
         this.socket.on('message dispatched', data => {
             this.updateMessages(data);
         })

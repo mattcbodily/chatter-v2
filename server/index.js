@@ -78,6 +78,14 @@ io.on('connection', socket => {
         let messages = await db.message.message_history({group});
         socket.emit('reaction added', messages)
     })
+    socket.on("delete emoji", async data => {
+        const {colons, sender, group} = data,
+              db = app.get('db');
+
+        await db.message.delete_message_reaction({colons, sender});
+        let messages = await db.message.message_history({group});
+        socket.emit('reaction deleted', messages);
+    })
     socket.on("disconnect", () => {
         console.log("User Disconnected");
     });
