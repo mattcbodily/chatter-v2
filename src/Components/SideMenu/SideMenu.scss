@@ -20,9 +20,20 @@
 
 .modal-backdrop {
     height: calc(100vh - 75px);
-    width: 100%;
+    width: calc(100% - 300px);
     position: fixed;
     top: 75px;
+    left: 300px;
     background: rgba(0,0,0,.5);
     z-index: 2;
+}
+
+@media(min-width: 1000px){
+    .side-menu {
+        width: 325px;
+    }
+
+    .modal-backdrop {
+        display: none;
+    }
 }

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {selectChat} from '../../redux/reducer';
 import SideMenu from '../SideMenu/SideMenu';
+import logo from '../../assets/chatter-logo.png';
 import hamburger from '../../assets/menu.svg';
 import moreVertical from '../../assets/more-vertical.svg';
 import './Header.scss';
@@ -58,6 +59,10 @@ class Header extends Component {
                     {sideMenuView
                     ? <SideMenu chatGroups={chatGroups} getGroupFn={this.getGroups} toggleFn={this.toggleSideMenu}/>
                     : null}
+                    <div className='logo-flex'>
+                        <img src={logo} alt='Chatter' className='header-logo'/>
+                        <h3>Chatter</h3>
+                    </div>
                     {this.props.location.pathname !== '/profile'
                     ? <h3 className='group-name'>{chatGroups.find(e => e.group_id === selectedChat)?.group_name}</h3>
                     : <h3>Profile</h3>}
@@ -72,10 +77,13 @@ class Header extends Component {
                     : null}
                 </header>
                 <header className='header-desktop'>
-                    <h1>Chatter</h1>
+                    <div className='logo-flex'>
+                        <img src={logo} alt='Chatter' className='header-logo'/>
+                        <h3>Chatter</h3>
+                    </div>
                     <nav>
-                        <Link to='/chat/0'>Dashboard</Link>
-                        <Link to='/profile'>Profile</Link>
+                        <Link to='/chat/0' className='desktop-links'>Dashboard</Link>
+                        <Link to='/profile' className='desktop-links'>Profile</Link>
                     </nav>
                     {this.props.location.pathname !== '/profile'
                     ? <SideMenu chatGroups={this.state.chatGroups} getGroupFn={this.getGroups}/>

@@ -25,6 +25,21 @@
     margin-left: 10px;
 }
 
+.logo-flex {
+    display: flex;
+    align-items: center;
+}
+
+.logo-flex h3 {
+    font-size: 25px;
+}
+
+.header-logo {
+    height: 30px;
+    margin-left: 15px;
+    margin-right: 8px;
+}
+
 .main-menu {
     margin-right: 10px;
 }
@@ -57,4 +72,23 @@
 .dropdown-links:hover {
     background: darkgray;
     color: white;
+}
+
+@media(min-width: 1000px){
+    .header-mobile {
+        display: none;
+    }
+
+    .header-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .desktop-links {
+        text-decoration: none;
+        color: white;
+        font-size: 22px;
+        margin-right: 15px;
+    }
 }

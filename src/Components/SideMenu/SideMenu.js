@@ -29,8 +29,8 @@ class SideMenu extends Component {
               {chatGroups, getGroupFn} = this.props;
 
         return (
-            <div className='modal-backdrop'>
-                <div className='side-menu'>
+            <div className='side-menu'>
+                <div className='modal-backdrop'></div>
                     {chatGroups.length
                     ? chatGroups.map(group => (
                         <GroupDisplay 
@@ -49,7 +49,6 @@ class SideMenu extends Component {
                     ? <GroupModal create={true} getGroupFn={getGroupFn} toggleFn={this.createModalToggle} />
                     : null}
                 </div>
-            </div>
         )
     }
 }
