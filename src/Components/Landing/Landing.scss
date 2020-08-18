@@ -8,6 +8,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.bubble-effect-top {
+    height: 250px;
+    width: 400px;
+    border-radius: 50%;
+    background: #076DB2;
+    opacity: .7;
+    position: absolute;
+    top: -125px;
+    left: -200px;
 }
 
 .logo {
@@ -24,6 +37,17 @@
 
 .landing span {
     text-decoration: underline;
+}
+
+.bubble-effect-bottom {
+    height: 250px;
+    width: 400px;
+    border-radius: 50%;
+    background: #076DB2;
+    opacity: .7;
+    position: absolute;
+    bottom: -125px;
+    right: -200px;
 }
 
 @media(min-width: 650px){

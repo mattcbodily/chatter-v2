@@ -59,6 +59,7 @@ class Landing extends Component {
         const {username, email, password, verPassword, registerView} = this.state;
         return (
             <div className='landing'>
+                <div className='bubble-effect-top'></div>
                 <img className='logo' src={logo} alt='Chatter'/>
                 <h1>Welcome to Chatter!</h1>
                 {registerView
@@ -80,6 +81,7 @@ class Landing extends Component {
                         <p>Don't have an account? <span onClick={this.handleToggle}>Register here</span></p>
                     </>
                 )}
+                <div className='bubble-effect-bottom'></div>
             </div>
         )
     }
