@@ -34,7 +34,7 @@
 
 .message-options {
     height: 25px;
-    width: 50px;
+    width: 75px;
     box-sizing: border-box;
     border: 1px solid gray;
     border-radius: 5px;
@@ -64,17 +64,6 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-}
-
-.add-emoji-box {
-    height: 22px;
-    width: 35px;
-    box-sizing: border-box;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: darkgray;
 }
 
 .emoji-flex {

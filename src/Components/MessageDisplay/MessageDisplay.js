@@ -137,18 +137,14 @@ class MessageDisplay extends Component {
                             <p className='sender'>{message.username}</p>
                             <p className='message-text'>{message.message}</p>
                         </section>
-                        <div className='add-emoji-box' onClick={() => this.setState(prevState => ({showPicker: !prevState.showPicker}))}>
-                            <img src={smileIcon} alt='add emoji part one'/>
-                            <img src={plusIcon} alt='add emoji part two'/>
-                        </div>
                         {showPicker
                         ? <Picker onSelect={e => this.addEmoji(e)}/>
                         : null}
                         <div className={`message-options ${showOptions}`}>
+                            <img src={smileIcon} alt='Emoji React' onClick={() => this.setState(prevState => ({showPicker: !prevState.showPicker}))}/>
                             <img src={editIcon} alt='Edit Message' onClick={this.handleToggle}/>
                             <img src={deleteIcon} alt='Delete Message' onClick={this.deleteMessage}/>
                         </div>
-                        {}
                     </div>
                 )
                 : (
