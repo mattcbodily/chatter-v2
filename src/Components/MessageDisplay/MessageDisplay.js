@@ -46,9 +46,9 @@ class MessageDisplay extends Component {
         for(let i = 0; i < reactions.length; i++){
             if(!reactionNames.includes(reactions[i].colons)){
                 reactionNames.push(reactions[i].colons);
-                countArr.push({reaction: reactions[i].colons, count: 1, senders: [reactions[i].sender_id]})
+                countArr.push({colons: reactions[i].colons, count: 1, senders: [reactions[i].sender_id]})
             } else {
-                let reactionCopy = countArr.find(e => e.reaction === reactions[i].colons);
+                let reactionCopy = countArr.find(e => e.colons === reactions[i].colons);
                 reactionCopy.count += 1;
                 reactionCopy.senders.push(reactions[i].sender_id);
             }
@@ -155,7 +155,7 @@ class MessageDisplay extends Component {
                 ? (
                     <div className='emoji-flex'>
                         {reactionCounts.map((reaction, i) => (
-                        <div  key={i} className='emoji-container'>
+                        <div key={i} className='emoji-container' onClick={() => this.addEmoji(reaction)}>
                             <Emoji emoji={reaction.colons} size={18}/>
                             <p>{reaction.count}</p>
                         </div>
