@@ -59,10 +59,6 @@ class Header extends Component {
                     {sideMenuView
                     ? <SideMenu chatGroups={chatGroups} getGroupFn={this.getGroups} toggleFn={this.toggleSideMenu}/>
                     : null}
-                    <div className='logo-flex'>
-                        <img src={logo} alt='Chatter' className='header-logo'/>
-                        <h3>Chatter</h3>
-                    </div>
                     {this.props.location.pathname !== '/profile'
                     ? <h3 className='group-name'>{chatGroups.find(e => e.group_id === selectedChat)?.group_name}</h3>
                     : <h3>Profile</h3>}

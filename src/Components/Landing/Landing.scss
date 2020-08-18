@@ -13,8 +13,8 @@
 }
 
 .bubble-effect-top {
-    height: 250px;
-    width: 400px;
+    height: 225px;
+    width: 375px;
     border-radius: 50%;
     background: #076DB2;
     opacity: .7;
@@ -40,14 +40,21 @@
 }
 
 .bubble-effect-bottom {
-    height: 250px;
-    width: 400px;
+    height: 225px;
+    width: 375px;
     border-radius: 50%;
     background: #076DB2;
     opacity: .7;
     position: absolute;
     bottom: -125px;
     right: -200px;
+}
+
+@media(min-width: 400px){
+    .bubble-effect-top, .bubble-effect-bottom {
+        height: 250px;
+        width: 400px;
+    }
 }
 
 @media(min-width: 650px){

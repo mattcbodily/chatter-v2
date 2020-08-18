@@ -1,7 +1,18 @@
 @import '../../mixins';
 
+.profile {
+    height: 100vh;
+    width: 100%;
+}
+
 .profile-flex {
+    min-height: 90vh;
+    box-sizing: border-box;
     padding-top: 75px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile input {
@@ -51,4 +62,14 @@
     border-radius: 50%;
     background: lightblue;
     margin: 10px;
+}
+
+@media(min-width: 450px){
+    .profile button {
+        @include main-button-desktop;
+    }
+
+    .avatar-flex {
+        width: 400px;
+    }
 }

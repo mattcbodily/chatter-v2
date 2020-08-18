@@ -44,3 +44,10 @@
     border-radius: 20px;
     border: 1px solid lightgray;
 }
+
+@media(min-width: 1000px){
+    .chat {
+        width: calc(100% - 325px);
+        margin-left: 325px;
+    }
+}
