@@ -71,10 +71,10 @@ io.on('connection', socket => {
         socket.emit("message dispatched", messages);
       });
     socket.on("emoji react", async data => {
-        const {message_id, reaction, sender, group} = data,
+        const {message_id, colons, sender, group} = data,
               db = app.get('db');
 
-        await db.message.add_message_reaction({message_id, sender, reaction});
+        await db.message.add_message_reaction({message_id, sender, colons});
         let messages = await db.message.message_history({group});
         socket.emit('reaction added', messages)
     })

@@ -44,11 +44,11 @@ class MessageDisplay extends Component {
               countArr = [];
 
         for(let i = 0; i < reactions.length; i++){
-            if(!reactionNames.includes(reactions[i].reaction)){
-                reactionNames.push(reactions[i].reaction);
-                countArr.push({reaction: reactions[i].reaction, count: 1, senders: [reactions[i].sender_id]})
+            if(!reactionNames.includes(reactions[i].colons)){
+                reactionNames.push(reactions[i].colons);
+                countArr.push({reaction: reactions[i].colons, count: 1, senders: [reactions[i].sender_id]})
             } else {
-                let reactionCopy = countArr.find(e => e.reaction === reactions[i].reaction);
+                let reactionCopy = countArr.find(e => e.reaction === reactions[i].colons);
                 reactionCopy.count += 1;
                 reactionCopy.senders.push(reactions[i].sender_id);
             }
@@ -60,16 +60,21 @@ class MessageDisplay extends Component {
     addEmoji = (e) => {
         const {reactionCounts} = this.state,
               {user, match} = this.props,
-              {message_id} = this.props.message;
-        
-        this.props.socket.emit('emoji react', {
-            message_id,
-            reaction: e.colons,
-            sender: user.user_id,
-            group: +match.params.id
-        })
-        this.setState({showPicker: false});
-        this.getEmojis();
+              {message_id} = this.props.message,
+              reaction = reactionCounts.find(emojiObj => emojiObj.colons === e.colons);
+
+        if(reaction && reaction.senders.includes(user.user_id)){
+            alert('no can do, buddy boy')
+        } else {
+            this.props.socket.emit('emoji react', {
+                message_id,
+                colons: e.colons,
+                sender: user.user_id,
+                group: +match.params.id
+            })
+            this.setState({showPicker: false});
+            this.getEmojis();
+        }
     }
 
     handleInput = (val) => {
@@ -151,7 +156,7 @@ class MessageDisplay extends Component {
                     <div className='emoji-flex'>
                         {reactionCounts.map((reaction, i) => (
                         <div  key={i} className='emoji-container'>
-                            <Emoji emoji={reaction.reaction} size={18}/>
+                            <Emoji emoji={reaction.colons} size={18}/>
                             <p>{reaction.count}</p>
                         </div>
                         ))}

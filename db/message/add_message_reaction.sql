@@ -1,9 +1,9 @@
 insert into message_reaction (
     message_id,
     sender_id,
-    reaction
+    colons
 ) values (
     ${message_id},
     ${sender},
-    ${reaction}
+    ${colons}
 );
