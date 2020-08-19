@@ -78,7 +78,7 @@ class Header extends Component {
                         <h3>Chatter</h3>
                     </div>
                     <nav>
-                        <Link to='/chat/0' className='desktop-links'>Dashboard</Link>
+                        <Link to={`/chat/${selectedChat}`} className='desktop-links'>Dashboard</Link>
                         <Link to='/profile' className='desktop-links'>Profile</Link>
                     </nav>
                     {this.props.location.pathname !== '/profile'

@@ -28,13 +28,13 @@
     background: #2CDA9D;
     font-size: 18px;
     font-weight: bold;
-    color: white;
+    color: #F7F0F5;
     &:hover {
         background: #28BA86;
     }
     &:active {
         background: #2CDA9D;
-    } 
+    }
 }
 
 @mixin main-button-desktop {
