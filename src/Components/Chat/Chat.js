@@ -11,6 +11,7 @@ class Chat extends Component {
             messages: [],
             messageInput: ''
         }
+        this.messageEnd = React.createRef();
     }
 
 
@@ -45,6 +46,10 @@ class Chat extends Component {
         this.socket.disconnect()
     }
 
+    scrollToBottom = () => {
+        this.messageEnd.current.scrollIntoView();
+    }
+
     joinRoom = async() => {
         this.socket.emit('join room', {
             group: +this.props.match.params.id
@@ -55,6 +60,7 @@ class Chat extends Component {
         this.setState({
           messages
         })
+        this.scrollToBottom();
     }
 
     handleInput = (val) => {
@@ -75,6 +81,7 @@ class Chat extends Component {
         this.setState({
           messages
         })
+        this.scrollToBottom();
     }
 
     render(){
@@ -95,6 +102,7 @@ class Chat extends Component {
                             {messages.sort((a,b) => a.message_id - b.message_id).map((message, i) => (
                                 <MessageDisplay key={i} message={message} updateFn={this.updateMessages} emojiFn={this.addEmoji} socket={this.socket}/>
                             ))}
+                            <div ref={this.messageEnd}/>
                         </div>
                     )}
                 <section className='send-message'>
