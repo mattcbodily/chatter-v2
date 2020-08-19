@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .message {
     height: 65px;
     width: 100%;
@@ -11,6 +13,18 @@
 
 .message:hover {
     background: #EEEEEE;
+}
+
+.edit-container input {
+    @include main-input-mobile;
+    color: black;
+    border-bottom: 1px solid gray;
+}
+
+.edit-container button {
+    @include main-button-mobile;
+    width: 200px;
+    margin: 0 2px;
 }
 
 .sender-avatar {

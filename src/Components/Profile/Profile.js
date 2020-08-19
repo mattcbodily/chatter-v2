@@ -93,9 +93,8 @@ class Profile extends Component {
                         <label>Change your Avatar?</label>
                         <div className='avatar-flex'>
                             {avatarArr.map((avatar, i) => (
-                                <div className={`${this.state.selectedAvatar === i ? 'selected-avatar' : 'not-selected-avatar'}`}>
+                                <div key={i} className={`${this.state.selectedAvatar === i ? 'selected-avatar' : 'not-selected-avatar'}`}>
                                     <img 
-                                        key={i}
                                         src={avatar} 
                                         alt='New Avatar'
                                         onClick={() => this.changeAvatar(avatar, i)}/>

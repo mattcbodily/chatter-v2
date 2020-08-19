@@ -165,7 +165,7 @@ class MessageDisplay extends Component {
                     </div>
                 )
                 : (
-                    <div className='message'>
+                    <div className='message edit-container'>
                         <input value={messageInput} onChange={e => this.handleInput(e.target.value)}/>
                         <button onClick={this.handleEdit}>Submit</button>
                         <button onClick={this.handleToggle}>Cancel</button>
