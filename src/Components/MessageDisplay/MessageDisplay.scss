@@ -67,6 +67,13 @@
     align-items: center;
 }
 
+.emoji-picker {
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+    z-index: 10;
+}
+
 .emoji-flex {
     box-sizing: border-box;
     padding-left: 82px;

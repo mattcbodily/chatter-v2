@@ -6,7 +6,6 @@ import {Picker, Emoji} from 'emoji-mart';
 import editIcon from '../../assets/edit-2.svg';
 import deleteIcon from '../../assets/trash-2.svg';
 import smileIcon from '../../assets/smile.svg';
-import plusIcon from '../../assets/plus.svg';
 import 'emoji-mart/css/emoji-mart.css'
 import './MessageDisplay.scss';
 
@@ -152,7 +151,11 @@ class MessageDisplay extends Component {
                             <p className='message-text'>{message.message}</p>
                         </section>
                         {showPicker
-                        ? <Picker onSelect={e => this.addEmoji(e)}/>
+                        ? (
+                            <div className='emoji-picker'>
+                                <Picker onSelect={e => this.addEmoji(e)}/>
+                            </div>
+                        )
                         : null}
                         <div className={`message-options ${showOptions}`}>
                             <img src={smileIcon} alt='Emoji React' onClick={() => this.setState(prevState => ({showPicker: !prevState.showPicker}))}/>
