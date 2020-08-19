@@ -16,6 +16,12 @@ class Profile extends Component {
         }
     }
 
+    componentDidMount(){
+        if(!this.props.user.user_id){
+            this.props.history.push('/');
+        }
+    }
+
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }

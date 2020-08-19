@@ -18,7 +18,7 @@ class Landing extends Component {
     }
 
     componentDidMount(){
-        if(this.props.user.email){
+        if(this.props.user.user_id){
             this.props.history.push('/chat')
         }
     }
