@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .chat {
     height: 100vh;
     width: 100%;
@@ -38,11 +40,14 @@
 }
 
 .send-message button {
-    height: 35px;
+    // height: 35px;
+    // width: 20%;
+    // box-sizing: border-box;
+    // border-radius: 20px;
+    // border: 1px solid lightgray;
+    @include main-button-mobile;
+    margin: 0px;
     width: 20%;
-    box-sizing: border-box;
-    border-radius: 20px;
-    border: 1px solid lightgray;
 }
 
 @media(min-width: 1000px){

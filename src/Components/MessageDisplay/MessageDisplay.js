@@ -158,7 +158,7 @@ class MessageDisplay extends Component {
                 ? (
                     <div className='emoji-flex'>
                         {reactionCounts.map((reaction, i) => (
-                        <div key={i} className='emoji-container' onClick={() => this.addEmoji(reaction)}>
+                        <div key={i} className={`emoji-container ${reaction.senders.includes(this.props.user.user_id) ? 'user-reacted' : null}`} onClick={() => this.addEmoji(reaction)}>
                             <Emoji emoji={reaction.colons} size={18}/>
                             <p>{reaction.count}</p>
                         </div>

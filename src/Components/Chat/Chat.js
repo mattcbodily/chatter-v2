@@ -13,6 +13,7 @@ class Chat extends Component {
         }
     }
 
+
     componentDidMount(){
         if(!this.props.user.user_id){
             this.props.history.push('/');
@@ -77,6 +78,7 @@ class Chat extends Component {
     }
 
     render(){
+        console.log(this.messagesEnd)
         const {messageInput, messages} = this.state,
               {id} = +this.props.match.params;
     
