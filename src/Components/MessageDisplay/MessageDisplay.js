@@ -30,7 +30,6 @@ class MessageDisplay extends Component {
 
     // componentDidUpdate(prevProps){
     //     if(+prevProps.match.params.id !== +this.props.match.params.id){
-    //         console.log('hit')
     //         this.setState({
     //             reactions: [],
     //             reactionCounts: []
@@ -138,7 +137,7 @@ class MessageDisplay extends Component {
     render(){
         const {reactionCounts, showOptions, editMessage, showPicker, messageInput} = this.state,
               {message} = this.props;
-              console.log(this.props.match.params.id)
+            //   console.log(reactionCounts)
 
         return (
             <div>
