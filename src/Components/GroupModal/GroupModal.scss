@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .full-modal-backdrop {
     height: 100vh;
     width: 100%;
@@ -43,6 +45,14 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     font-size: 16px;
+}
+
+.group-modal button {
+    @include main-button-mobile;
+}
+
+.filtered-user {
+    cursor: pointer;
 }
 
 .selected-user-flex {

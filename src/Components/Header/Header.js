@@ -82,7 +82,7 @@ class Header extends Component {
                         <Link to='/profile' className='desktop-links'>Profile</Link>
                     </nav>
                     {this.props.location.pathname !== '/profile'
-                    ? <SideMenu chatGroups={this.state.chatGroups} getGroupFn={this.getGroups}/>
+                    ? <SideMenu chatGroups={this.state.chatGroups} getGroupFn={this.getGroups} toggleFn={this.toggleSideMenu}/>
                     : null}
                 </header>
             </div>

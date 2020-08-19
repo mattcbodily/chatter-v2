@@ -26,7 +26,9 @@ class GroupModal extends Component {
 
     componentDidUpdate(prevProps, prevState){
         if(prevState.userInput !== this.state.userInput && this.state.userInput){
-            this.setState({filteredUsers: this.state.users.filter(user => user.username.includes(this.state.userInput))})
+            this.setState({filteredUsers: this.state.users.filter(user => user.username.toLowerCase().includes(this.state.userInput.toLowerCase()) && user.username !== this.props.user.username)})
+        } else if(!this.state.userInput && prevState.userInput){
+            this.setState({filteredUsers: []})
         }
     }
 
@@ -96,7 +98,7 @@ class GroupModal extends Component {
                     <label>Invite Someone</label>
                     <input value={userInput} name='userInput' onChange={e => this.handleInput(e)}/>
                     {filteredUsers?.map(user => (
-                        <p key={user.user_id} onClick={() => this.selectUser(user)}>{user.username}</p>
+                        <p key={user.user_id} className='filtered-user' onClick={() => this.selectUser(user)}>{user.username}</p>
                     ))}
                     <div className='selected-user-flex'>
                         {selectedUsers?.map(user => (
