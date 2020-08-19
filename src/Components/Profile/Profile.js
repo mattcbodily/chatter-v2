@@ -12,7 +12,8 @@ class Profile extends Component {
             email: this.props.user.email,
             profilePicture: this.props.user.profilePicture,
             edit: false,
-            avatarArr: []
+            avatarArr: [],
+            selectedAvatar: null
         }
     }
 
@@ -26,8 +27,11 @@ class Profile extends Component {
         this.setState({[e.target.name]: e.target.value})
     }
 
-    changeAvatar = (avatar) => {
-        this.setState({profilePicture: avatar})
+    changeAvatar = (avatar, i) => {
+        this.setState({
+            profilePicture: avatar,
+            selectedAvatar: i 
+        })
     }
 
     handleLogout = () => {
@@ -89,12 +93,13 @@ class Profile extends Component {
                         <label>Change your Avatar?</label>
                         <div className='avatar-flex'>
                             {avatarArr.map((avatar, i) => (
-                                <img 
-                                    key={i} 
-                                    style={{height: '100px', width: '100px'}} 
-                                    src={avatar} 
-                                    alt='New Avatar'
-                                    onClick={() => this.changeAvatar(avatar)}/>
+                                <div className={`${this.state.selectedAvatar === i ? 'selected-avatar' : 'not-selected-avatar'}`}>
+                                    <img 
+                                        key={i}
+                                        src={avatar} 
+                                        alt='New Avatar'
+                                        onClick={() => this.changeAvatar(avatar, i)}/>
+                                </div>
                             ))}
                         </div>
                         <button onClick={this.updateUser}>Update</button>

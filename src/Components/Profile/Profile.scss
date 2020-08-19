@@ -64,6 +64,20 @@
     margin: 10px;
 }
 
+.selected-avatar, .not-selected-avatar {
+    height: 110px;
+    width: 110px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selected-avatar {
+    border: 3px solid #28BA86;
+    border-radius: 50%;
+}
+
 @media(min-width: 450px){
     .profile button {
         @include main-button-desktop;
@@ -71,5 +85,6 @@
 
     .avatar-flex {
         width: 400px;
+        justify-content: space-between;
     }
 }
