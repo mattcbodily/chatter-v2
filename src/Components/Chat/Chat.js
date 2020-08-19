@@ -85,7 +85,6 @@ class Chat extends Component {
     }
 
     render(){
-        console.log(this.messagesEnd)
         const {messageInput, messages} = this.state,
               {id} = +this.props.match.params;
     
