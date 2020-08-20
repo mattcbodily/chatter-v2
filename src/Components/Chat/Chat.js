@@ -99,7 +99,7 @@ class Chat extends Component {
                     : (
                         <div className='message-container'>
                             {messages.sort((a,b) => a.message_id - b.message_id).map((message, i) => (
-                                <MessageDisplay key={i} message={message} updateFn={this.updateMessages} emojiFn={this.addEmoji} socket={this.socket}/>
+                                <MessageDisplay key={message.message_id} message={message} updateFn={this.updateMessages} emojiFn={this.addEmoji} socket={this.socket}/>
                             ))}
                             <div ref={this.messageEnd}/>
                         </div>

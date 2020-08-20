@@ -77,6 +77,9 @@ class Header extends Component {
                         <img src={logo} alt='Chatter' className='header-logo'/>
                         <h3>Chatter</h3>
                     </div>
+                    {this.props.location.pathname !== '/profile'
+                    ? <h3 className='group-name'>{chatGroups.find(e => e.group_id === selectedChat)?.group_name}</h3>
+                    : <h3>Profile</h3>}
                     <nav>
                         <Link to={`/chat/${selectedChat}`} className='desktop-links'>Dashboard</Link>
                         <Link to='/profile' className='desktop-links'>Profile</Link>

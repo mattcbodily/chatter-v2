@@ -26,17 +26,11 @@ class MessageDisplay extends Component {
         this.getEmojis();
     }
 
-    //Currently working on fixing a bug where emojis from groups remain even when switching groups
-
-    // componentDidUpdate(prevProps){
-    //     if(+prevProps.match.params.id !== +this.props.match.params.id){
-    //         this.setState({
-    //             reactions: [],
-    //             reactionCounts: []
-    //         })
-    //         this.getEmojis();
-    //     }
-    // }
+    componentDidUpdate(prevProps){
+        if(+prevProps.match.params.id !== +this.props.match.params.id){
+            this.getEmojis();
+        }
+    }
 
     getEmojis = () => {
         axios.get(`/api/message-reaction/${this.props.message.message_id}`)
