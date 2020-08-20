@@ -20,7 +20,7 @@ class Chat extends Component {
             this.props.history.push('/');
         }
 
-        this.socket = io('http://localhost:3333');
+        this.socket = io();
         this.socket.on('room joined', data => {
             this.joinSuccess(data);
         })
