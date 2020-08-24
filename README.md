@@ -12,4 +12,4 @@ This repository contains the code for a chat application called Chatter. On chat
 * Socket.io
 * Emoji-mart
 
-![Chatter Landing Page](src/assets/assets/readme-image.png)
+![Chatter Landing Page](src/assets/readme-image.png)
