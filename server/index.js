@@ -12,6 +12,7 @@ const express = require('express'),
       io = socket(app.listen(SERVER_PORT, () => console.log(`Chatting on ${SERVER_PORT}`)));
 
 app.use(express.json());
+app.use(express.static(`${__dirname}/../build`));
 app.use(session({
     saveUninitialized: true,
     resave: false,
